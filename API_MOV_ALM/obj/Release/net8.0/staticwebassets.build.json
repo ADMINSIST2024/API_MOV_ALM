@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "75caIqMusnJoPYYjqsNXUeP+F0tI8A7EJQWbSw6Z58k=",
+  "Source": "API_MOV_ALM",
+  "BasePath": "_content/API_MOV_ALM",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

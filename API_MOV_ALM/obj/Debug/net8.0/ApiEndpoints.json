@@ -1,0 +1,578 @@
+[
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "ObtenerAlmacen",
+    "RelativePath": "api/Almacen/ObtenerAlmacen",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "ObtenerAlmacenXCodigo",
+    "RelativePath": "api/Almacen/ObtenerAlmacenXCodigo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "almacen",
+        "Type": "DTOs.DtosInputs.DtosAlmacen.ObtenerAlmacenXCodigoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "ObtenerCorrelativoAlmacen",
+    "RelativePath": "api/Almacen/ObtenerCorrelativoAlmacen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "almacen",
+        "Type": "DTOs.DtosInputs.DtosAlmacen.ObtenerCorrelativoAlmacenDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "ObtenerRegistro_FMOVALG2",
+    "RelativePath": "api/Almacen/ObtenerRegistroFMVALG2",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "movimiento",
+        "Type": "DTOs.DtosInputs.DtosMovimientoAlmacenInputs.ObtenerRegistroFMOVALG2DtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "UtilizaRegistroCorrelativoAlmacen",
+    "RelativePath": "api/Almacen/UtilizaRegistroCorrelativoAlmacen",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "almacen",
+        "Type": "DTOs.DtosInputs.DtosAlmacen.UtilizaRegCorrelativoAlmDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AlmacenController",
+    "Method": "ValidarAlamcenXCcosto",
+    "RelativePath": "api/Almacen/ValidarAlamcenXCcosto",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "almacen",
+        "Type": "DTOs.DtosInputs.DtosAlmacen.ValidarAlamcenXCcostoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AltaController",
+    "Method": "GrabarAlta",
+    "RelativePath": "api/Alta/GrabarAlta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosAlta.GrabarAltaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AltaController",
+    "Method": "InsertaODRPCON1",
+    "RelativePath": "api/Alta/InsertaODRPCON1",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosAlta.InsertaODRPCON1Inputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AltaController",
+    "Method": "ProcesarGuardado",
+    "RelativePath": "api/Alta/ProcesarGuardado",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.ProcesarGuardadoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.AltaController",
+    "Method": "ProcesoLecturaEtiqueta",
+    "RelativePath": "api/Alta/ProcesoLecturaEtiqueta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosAlta.ProcesoLecturaEtiquetaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.CentroCostoController",
+    "Method": "ObtenerCentroCostoXCodigo",
+    "RelativePath": "api/CentroCosto/ObtenerCentroCostoXCodigo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cc",
+        "Type": "DTOs.DtosInputs.DtosCentroCostoInputs.CentroCostoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.CentroCostoController",
+    "Method": "ObtenerCentroCostos",
+    "RelativePath": "api/CentroCosto/ObtenerCentroCostos",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.CompaniaController",
+    "Method": "ObtenerCompania",
+    "RelativePath": "api/Compania/ObtenerCompania",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.CompaniaController",
+    "Method": "ObtenerCompa\u00F1ia_x_Codigo",
+    "RelativePath": "api/Compania/ObtenerCompa\u00F1ia_x_Codigo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "comp",
+        "Type": "DTOs.DtosInputs.DtosCompa\u00F1iaInputs.Compa\u00F1iaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "BloquearRegistro",
+    "RelativePath": "api/General/BloquearRegistro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.BloquearRegistroNullDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "BloquearRegistroCorrelativo",
+    "RelativePath": "api/General/BloquearRegistroCorrelativo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.BloquearRegistroCorrelativoNullDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "BloquearRegistroNull",
+    "RelativePath": "api/General/BloquearRegistroNull",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.BloquearRegistroNullDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "CriterioTipoExistencia",
+    "RelativePath": "api/General/CriterioTipoExistencia",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.CriterioTipoExistenciaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "DesbloquearFABCORRE",
+    "RelativePath": "api/General/DesbloquearFABCORRE",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.DesbloquearFABCORREDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "DesbloquearRegistro",
+    "RelativePath": "api/General/DesbloquearRegistro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.DesbloquearRegistroDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "DesbloquearTABCORRE",
+    "RelativePath": "api/General/DesbloquearTABCORRE",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.DesbloquearTABCORREDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "ObtenerDatosEtiqueta",
+    "RelativePath": "api/General/ObtenerDatosEtiqueta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosEtiqueta.EtiquetaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "ObtenerFMOVALG2",
+    "RelativePath": "api/General/ObtenerFMOVALG2",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.ObtenerFMOVALG2DtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "UtilizaRegistro",
+    "RelativePath": "api/General/UtilizaRegistro",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.UtilizaRegistroDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "ValidaUsoCorrelativo",
+    "RelativePath": "api/General/ValidaUsoCorrelativo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "ValidarLogin",
+    "RelativePath": "api/General/ValidarLogin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.ValidarLoginDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "ValidarTipoListado",
+    "RelativePath": "api/General/ValidarTipoListado",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.ValidarTipoListadoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "validarEstadoCarga",
+    "RelativePath": "api/General/validarEstadoCarga",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.NroCargaDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "validarEstadoConsecutivo",
+    "RelativePath": "api/General/validarEstadoConsecutivo",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.ConsecutivoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.GeneralController",
+    "Method": "validarNroOrden",
+    "RelativePath": "api/General/validarNroOrden",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosGeneralInputs.NroOrdenDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.MovimientoController",
+    "Method": "ConsultaMovimiento",
+    "RelativePath": "api/Movimiento/ConsultaMovimiento",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "DTOs.DtosInputs.DtosMovimientoAlmacenInputs.ConsultaMovimientoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.TipoDocumentoController",
+    "Method": "ObtenerTipoDocInput",
+    "RelativePath": "api/TipoDocumento/ObtenerTipoDocInput",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.TipoDocumentoController",
+    "Method": "ObtenerTipoMovSalida",
+    "RelativePath": "api/TipoDocumento/ObtenerTipoMovSalida",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CodAlmacen",
+        "Type": "DTOs.DtosInputs.DtosTipoMovimiento.TipoDocumentoDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.TipoMovimientoController",
+    "Method": "ObtenerTipoMovTransferencia",
+    "RelativePath": "api/TipoMovimiento/ObtenerTipoMovTransferencia",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.UsuarioController",
+    "Method": "Desencripta",
+    "RelativePath": "usuario/Desencripta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "claveEncriptada",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.UsuarioController",
+    "Method": "Encripta",
+    "RelativePath": "usuario/Encripta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clave",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.String",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_MOV_ALM.Controllers.UsuarioController",
+    "Method": "IniciarSesion",
+    "RelativePath": "usuario/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "DTOs.DtosInputs.DtosUsuarioInputs.LoginDtoInputs",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
