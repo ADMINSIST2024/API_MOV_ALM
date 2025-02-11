@@ -313,6 +313,16 @@
         "runtime": {
           "bin/placeholder/Models.dll": {}
         }
+      },
+      "Tools/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Tools.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Tools.dll": {}
+        }
       }
     }
   },
@@ -769,6 +779,11 @@
       "type": "project",
       "path": "../Models/Models.csproj",
       "msbuildProject": "../Models/Models.csproj"
+    },
+    "Tools/1.0.0": {
+      "type": "project",
+      "path": "../Tools/Tools.csproj",
+      "msbuildProject": "../Tools/Tools.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -779,7 +794,8 @@
       "Models >= 1.0.0",
       "Newtonsoft.Json >= 13.0.3",
       "System.Data.OleDb >= 8.0.0",
-      "System.IdentityModel.Tokens.Jwt >= 7.2.0"
+      "System.IdentityModel.Tokens.Jwt >= 7.2.0",
+      "Tools >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -789,11 +805,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\API\\API_MOV_ALM\\Services\\Services.csproj",
+      "projectUniqueName": "D:\\REPOSITORIO\\API_MOV_ALM\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "D:\\API\\API_MOV_ALM\\Services\\Services.csproj",
+      "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Services\\Services.csproj",
       "packagesPath": "C:\\Users\\SYSTEM8\\.nuget\\packages\\",
-      "outputPath": "D:\\API\\API_MOV_ALM\\Services\\obj\\",
+      "outputPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -815,11 +831,14 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\API\\API_MOV_ALM\\DTOs\\DTOs.csproj": {
-              "projectPath": "D:\\API\\API_MOV_ALM\\DTOs\\DTOs.csproj"
+            "D:\\REPOSITORIO\\API_MOV_ALM\\DTOs\\DTOs.csproj": {
+              "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\DTOs\\DTOs.csproj"
             },
-            "D:\\API\\API_MOV_ALM\\Models\\Models.csproj": {
-              "projectPath": "D:\\API\\API_MOV_ALM\\Models\\Models.csproj"
+            "D:\\REPOSITORIO\\API_MOV_ALM\\Models\\Models.csproj": {
+              "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Models\\Models.csproj"
+            },
+            "D:\\REPOSITORIO\\API_MOV_ALM\\Tools\\Tools.csproj": {
+              "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Tools\\Tools.csproj"
             }
           }
         }

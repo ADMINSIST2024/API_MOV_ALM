@@ -23,6 +23,57 @@ namespace Services.Repository.Implementacion
             CadenaAS400 = configuracion.GetConnectionString("CadenaAS400");
         }
 
+        public async Task<int> Prueba()
+        {
+            int rowsAffected = 0;
+            try
+            {
+                if (string.IsNullOrEmpty(CadenaAS400))
+                {
+                    Console.WriteLine("La cadena de conexión es nula o vacía");
+                }
+                else
+                {
+                    using (var con = new OleDbConnection(CadenaAS400))
+                    {
+
+                        await con.OpenAsync();
+
+                        using (var transaction = con.BeginTransaction())
+                        {
+                            try
+                            {
+                                using (OleDbCommand cmd = new OleDbCommand("PRUEBATRANSAC", con))
+                                {
+                                    cmd.CommandType = CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("@p_id", 1);
+                                    cmd.Parameters.AddWithValue("@p_nombre", "visual");
+
+                                    rowsAffected = await cmd.ExecuteNonQueryAsync();
+
+                                }
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback(); // Revertir cambios en caso de error
+                                Console.WriteLine("Error en la transacción: " + ex.Message);
+                            }
+                        }
+                        
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace(ex, true);
+                string mensaje = ex.Message;
+                Console.WriteLine(mensaje);
+            }
+            return rowsAffected;
+        }
+
         public async Task<int> Alta(Alta obj)
         {
             int rowsAffected = 0;
@@ -39,37 +90,49 @@ namespace Services.Repository.Implementacion
 
                         await con.OpenAsync();
 
-                        using (OleDbCommand cmd = new OleDbCommand("SP_API_ALTA", con))
+                        using(var transaction = con.BeginTransaction())
                         {
-                            cmd.CommandType = CommandType.StoredProcedure;
+                            try
+                            {
+                                using (OleDbCommand cmd = new OleDbCommand("SP_API_ALTA", con))
+                                {
+                                    cmd.CommandType = CommandType.StoredProcedure;
 
-                            // Agregar parámetros
+                                    // Agregar parámetros
 
-                            cmd.Parameters.AddWithValue("@codigo", obj.codigo) ;
-                            cmd.Parameters.AddWithValue("@codcia", obj.codcia) ;
-                            cmd.Parameters.AddWithValue("@codalg", obj.codalg) ;
-                            cmd.Parameters.AddWithValue("@tmvmag", obj.tmvmag) ;
-                            cmd.Parameters.AddWithValue("@nmvmag", obj.nmvmag) ;
-                            cmd.Parameters.AddWithValue("@cscmag", obj.cscmag) ;
-                            cmd.Parameters.AddWithValue("@secma2", obj.secma2) ;
-                            cmd.Parameters.AddWithValue("@codtmv", obj.codtmv) ;
-                            cmd.Parameters.AddWithValue("@cremag", obj.cremag) ;
-                            cmd.Parameters.AddWithValue("@cencos", obj.cencos) ;
-                            cmd.Parameters.AddWithValue("@ademag", obj.ademag) ;
-                            cmd.Parameters.AddWithValue("@ucrmag", obj.ucrmag) ;
-                            cmd.Parameters.AddWithValue("@caemag", obj.caemag) ;
-                            cmd.Parameters.AddWithValue("@refere", obj.refere) ;
-                            cmd.Parameters.AddWithValue("@ctdor1", obj.ctdor1) ;
-                            cmd.Parameters.AddWithValue("@anoor1", obj.anoor1) ;
-                            cmd.Parameters.AddWithValue("@nroor1", obj.nroor1) ;
-                            cmd.Parameters.AddWithValue("@cscor2", obj.cscor2) ;
-                            cmd.Parameters.AddWithValue("@fecmag", obj.fecmag) ;
-                            cmd.Parameters.AddWithValue("@pcname", obj.pcname) ;
-                            cmd.Parameters.AddWithValue("@ncrma2", obj.ncrma2);
+                                    cmd.Parameters.AddWithValue("@codigo", obj.codigo);
+                                    cmd.Parameters.AddWithValue("@codcia", obj.codcia);
+                                    cmd.Parameters.AddWithValue("@codalg", obj.codalg);
+                                    cmd.Parameters.AddWithValue("@tmvmag", obj.tmvmag);
+                                    cmd.Parameters.AddWithValue("@nmvmag", obj.nmvmag);
+                                    cmd.Parameters.AddWithValue("@cscmag", obj.cscmag);
+                                    cmd.Parameters.AddWithValue("@secma2", obj.secma2);
+                                    cmd.Parameters.AddWithValue("@codtmv", obj.codtmv);
+                                    cmd.Parameters.AddWithValue("@cremag", obj.cremag);
+                                    cmd.Parameters.AddWithValue("@cencos", obj.cencos);
+                                    cmd.Parameters.AddWithValue("@ademag", obj.ademag);
+                                    cmd.Parameters.AddWithValue("@ucrmag", obj.ucrmag);
+                                    cmd.Parameters.AddWithValue("@caemag", obj.caemag);
+                                    cmd.Parameters.AddWithValue("@refere", obj.refere);
+                                    cmd.Parameters.AddWithValue("@ctdor1", obj.ctdor1);
+                                    cmd.Parameters.AddWithValue("@anoor1", obj.anoor1);
+                                    cmd.Parameters.AddWithValue("@nroor1", obj.nroor1);
+                                    cmd.Parameters.AddWithValue("@cscor2", obj.cscor2);
+                                    cmd.Parameters.AddWithValue("@fecmag", obj.fecmag);
+                                    cmd.Parameters.AddWithValue("@pcname", obj.pcname);
+                                    cmd.Parameters.AddWithValue("@ncrma2", obj.ncrma2);
 
 
-                            rowsAffected= await cmd.ExecuteNonQueryAsync();
+                                    rowsAffected = await cmd.ExecuteNonQueryAsync();
 
+                                }
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                transaction.Rollback(); // Revertir cambios en caso de error
+                                Console.WriteLine("Error en la transacción");// + ex.Message);
+                            }
                         }
                     }
                 }

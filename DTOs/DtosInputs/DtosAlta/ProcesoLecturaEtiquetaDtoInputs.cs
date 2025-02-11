@@ -12,8 +12,8 @@ namespace DTOs.DtosInputs.DtosAlta
         public string pcName { get; set; }
         public string fechaIngresada { get; set; }
 
-        public string codcompania { get; set; }
+        public string codcompania { get; set; } 
         public string almacen { get; set; }
-
+        public string listCodExis { get; set; }
     }
 }

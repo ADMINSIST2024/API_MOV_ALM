@@ -12,7 +12,9 @@ using Services.Repository.Implementacion;
 using Services.Repository.Interface;
 using ServiceStack;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -161,10 +163,9 @@ namespace API_MOV_ALM.Controllers
         [Route("ProcesarGuardado")]
         public async Task<IActionResult> ProcesarGuardado(ProcesarGuardadoDtoInputs obj)
         {
-            
             object response = null;
             int resGuardarAlta=0;
-           
+            
             Alta obj_alta = new Alta();
             Almacen obj_almacen = new Almacen();
             General obj_general = new General();
@@ -172,15 +173,12 @@ namespace API_MOV_ALM.Controllers
             List<UtilizaRegistroDtoOutputs> ListaUtilizaRegistro= new List<UtilizaRegistroDtoOutputs>();
             List<ObtenerCorrelativoAlmacenDtoOuputs> ListaObtenerCorrelativoAlmacen = new List<ObtenerCorrelativoAlmacenDtoOuputs>();
             List<Almacen> ListaAlmacen = new List<Almacen>();
-         
-                try
+            try
             {
-
-              bool resultadoProcesarFecha=  ProcesarFecha(obj.fecmag);
+                bool resultadoProcesarFecha=  ProcesarFecha(obj.fecmag);
 
                 if (resultadoProcesarFecha)
                 {
-
                     int resultadoValidarStockEmpaque = ValidarStockEmpaque(obj);
 
                     if (resultadoValidarStockEmpaque > 0)
@@ -216,8 +214,6 @@ namespace API_MOV_ALM.Controllers
 
                             if (!PcNameUsando.Equals(obj.pcName))
                             {
-
-
                                 response = new
                                 {
                                     success = false,
@@ -474,10 +470,8 @@ namespace API_MOV_ALM.Controllers
         [Route("ProcesoLecturaEtiqueta")]
         public async Task<IActionResult> ProcesoLecturaEtiqueta(ProcesoLecturaEtiquetaDtoInputs obj)
         {
-
             object response = null;
             List<EtiquetaDtoOutput> obj_EtiquetaDtoOutputs = new List<EtiquetaDtoOutput>();
-
 
             try
             {
@@ -518,69 +512,77 @@ namespace API_MOV_ALM.Controllers
                             }
                             else
                             {
-
                                 if (Convert.ToInt32(obj_ListaEtiqueta[0].codcia) == Convert.ToInt32(obj.codcompania)
                                 && obj_ListaEtiqueta[0].tmvma1 == "I"
-                                && (obj_ListaEtiqueta[0].tmvmag == "I" || obj_ListaEtiqueta[0].tmvmag == "S")
+                                && (obj_ListaEtiqueta[0].tmvmag == "I" 
+                                    || obj_ListaEtiqueta[0].tmvmag == "S")
                                 && (int)obj_ListaEtiqueta[0].codalg == Convert.ToInt32(obj.almacen)
                                 )
                                 {
-                                    string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
-
-
-                                    if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
+                                    if (obj.listCodExis.Contains(obj_ListaEtiqueta[0].codexi.ToString()))
                                     {
-
-
-                                        foreach (Etiqueta obj_L in obj_ListaEtiqueta)
+                                        string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
+                                        if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
                                         {
-                                            EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
-                                            obj_EtiquetaDtoOutput.codexi = obj_L.codexi;
-                                            obj_EtiquetaDtoOutput.codchi = obj_L.codchi;
-                                            obj_EtiquetaDtoOutput.nlhmag = obj_L.nlhmag;
-                                            obj_EtiquetaDtoOutput.cremang = obj_L.cremang;
-                                            obj_EtiquetaDtoOutput.unimed = obj_L.unimed;
-                                            obj_EtiquetaDtoOutput.caemag = obj_L.caemag;
-                                            obj_EtiquetaDtoOutput.umemag = obj_L.umemag;
-                                            obj_EtiquetaDtoOutput.codigo = obj_L.codigo;
-                                            obj_EtiquetaDtoOutput.codalg = obj_L.codalg;
-                                            obj_EtiquetaDtoOutput.codcia = obj_L.codcia;
-                                            obj_EtiquetaDtoOutput.tmvma1 = obj_L.tmvma1;
-                                            obj_EtiquetaDtoOutput.tmvmag = obj_L.tmvmag;
-                                            obj_EtiquetaDtoOutput.ademag = obj_L.ademag;
-                                            obj_EtiquetaDtoOutput.codtex = obj_L.codtex;
-                                            obj_EtiquetaDtoOutput.codprv = obj_L.codprv;
-                                            obj_EtiquetaDtoOutput.trhmag = obj_L.trhmag;
-                                            obj_EtiquetaDtoOutput.urhmag = obj_L.urhmag;
-                                            obj_EtiquetaDtoOutput.fecmag = obj_L.fecmag.ToString("dd-MM-yyyy");
-                                            obj_EtiquetaDtoOutput.ltomag = obj_L.ltomag;
+                                            foreach (Etiqueta obj_L in obj_ListaEtiqueta)
+                                            {
+                                                EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
+                                                obj_EtiquetaDtoOutput.codexi = obj_L.codexi;
+                                                obj_EtiquetaDtoOutput.codchi = obj_L.codchi;
+                                                obj_EtiquetaDtoOutput.nlhmag = obj_L.nlhmag;
+                                                obj_EtiquetaDtoOutput.cremang = obj_L.cremang;
+                                                obj_EtiquetaDtoOutput.unimed = obj_L.unimed;
+                                                obj_EtiquetaDtoOutput.caemag = obj_L.caemag;
+                                                obj_EtiquetaDtoOutput.umemag = obj_L.umemag;
+                                                obj_EtiquetaDtoOutput.codigo = obj_L.codigo;
+                                                obj_EtiquetaDtoOutput.codalg = obj_L.codalg;
+                                                obj_EtiquetaDtoOutput.codcia = obj_L.codcia;
+                                                obj_EtiquetaDtoOutput.tmvma1 = obj_L.tmvma1;
+                                                obj_EtiquetaDtoOutput.tmvmag = obj_L.tmvmag;
+                                                obj_EtiquetaDtoOutput.ademag = obj_L.ademag;
+                                                obj_EtiquetaDtoOutput.codtex = obj_L.codtex;
+                                                obj_EtiquetaDtoOutput.codprv = obj_L.codprv;
+                                                obj_EtiquetaDtoOutput.trhmag = obj_L.trhmag;
+                                                obj_EtiquetaDtoOutput.urhmag = obj_L.urhmag;
+                                                obj_EtiquetaDtoOutput.fecmag = obj_L.fecmag.ToString("dd-MM-yyyy");
+                                                obj_EtiquetaDtoOutput.ltomag = obj_L.ltomag;
+                                                obj_EtiquetaDtoOutput.peso_unitario = obj_EtiquetaDtoOutput.cremang / obj_EtiquetaDtoOutput.caemag;
+                                                obj_EtiquetaDtoOutput.desexi = obj_L.desexi;
+                                                obj_EtiquetaDtoOutput.destipexi = obj_L.destipexi;
 
 
-                                            obj_EtiquetaDtoOutputs.Add(obj_EtiquetaDtoOutput);
+                                                obj_EtiquetaDtoOutputs.Add(obj_EtiquetaDtoOutput);
+                                            }
+                                            response = new
+                                            {
+                                                success = true,
+                                                message = "Datos de Etiqueta Obtenidos",
+                                                result = obj_EtiquetaDtoOutputs
+                                            };
+
                                         }
-
-
-                                        response = new
+                                        else
                                         {
-                                            success = true,
-                                            message = "Datos de Etiqueta Obtenidos",
-                                            result = obj_EtiquetaDtoOutputs
-                                        };
+                                            response = new
+                                            {
+                                                success = false,
+                                                message = "El registro está utilizado por: " + PcNameObtenido,
+                                                result = obj_EtiquetaDtoOutputs
 
+                                            };
+                                        }
                                     }
                                     else
                                     {
+                                        _GeneralRepository.DesbloquearRegistro2(obj.etiqueta);
                                         response = new
                                         {
                                             success = false,
-                                            message = "El registro está utilizado por: " + PcNameObtenido,
+                                            message = "Etiqueta pertenece a una existencia distinta a la orden ingresada.",
                                             result = obj_EtiquetaDtoOutputs
 
                                         };
                                     }
-
-
-
                                 }
                                 else if (Convert.ToInt32(obj_ListaEtiqueta[0].codcia) == Convert.ToInt32(obj.codcompania)
                                      && obj_ListaEtiqueta[0].tmvma1 == "I"
@@ -588,64 +590,71 @@ namespace API_MOV_ALM.Controllers
                                     && (int)obj_ListaEtiqueta[0].ademag == Convert.ToInt32(obj.almacen)
                                     )
                                 {
-                                    string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
-
-
-                                    if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
+                                    if (obj.listCodExis.Contains(obj_ListaEtiqueta[0].codexi.ToString()))
                                     {
-
-
-                                        foreach (Etiqueta obj_L in obj_ListaEtiqueta)
+                                        string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
+                                        if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
                                         {
-                                            EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
-                                            obj_EtiquetaDtoOutput.codexi = obj_L.codexi;
-                                            obj_EtiquetaDtoOutput.codchi = obj_L.codchi;
-                                            obj_EtiquetaDtoOutput.nlhmag = obj_L.nlhmag;
-                                            obj_EtiquetaDtoOutput.cremang = obj_L.cremang;
-                                            obj_EtiquetaDtoOutput.unimed = obj_L.unimed;
-                                            obj_EtiquetaDtoOutput.caemag = obj_L.caemag;
-                                            obj_EtiquetaDtoOutput.umemag = obj_L.umemag;
-                                            obj_EtiquetaDtoOutput.codigo = obj_L.codigo;
-                                            obj_EtiquetaDtoOutput.codalg = obj_L.codalg;
-                                            obj_EtiquetaDtoOutput.codcia = obj_L.codcia;
-                                            obj_EtiquetaDtoOutput.tmvma1 = obj_L.tmvma1;
-                                            obj_EtiquetaDtoOutput.tmvmag = obj_L.tmvmag;
-                                            obj_EtiquetaDtoOutput.ademag = obj_L.ademag;
-                                            obj_EtiquetaDtoOutput.codtex = obj_L.codtex;
-                                            obj_EtiquetaDtoOutput.codprv = obj_L.codprv;
-                                            obj_EtiquetaDtoOutput.trhmag = obj_L.trhmag;
-                                            obj_EtiquetaDtoOutput.urhmag = obj_L.urhmag;
-                                            obj_EtiquetaDtoOutput.fecmag = obj_L.fecmag.ToString("dd-MM-yyyy");
-                                            obj_EtiquetaDtoOutput.ltomag = obj_L.ltomag;
+                                            foreach (Etiqueta obj_L in obj_ListaEtiqueta)
+                                            {
+                                                EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
+                                                obj_EtiquetaDtoOutput.codexi = obj_L.codexi;
+                                                obj_EtiquetaDtoOutput.codchi = obj_L.codchi;
+                                                obj_EtiquetaDtoOutput.nlhmag = obj_L.nlhmag;
+                                                obj_EtiquetaDtoOutput.cremang = obj_L.cremang;
+                                                obj_EtiquetaDtoOutput.unimed = obj_L.unimed;
+                                                obj_EtiquetaDtoOutput.caemag = obj_L.caemag;
+                                                obj_EtiquetaDtoOutput.umemag = obj_L.umemag;
+                                                obj_EtiquetaDtoOutput.codigo = obj_L.codigo;
+                                                obj_EtiquetaDtoOutput.codalg = obj_L.codalg;
+                                                obj_EtiquetaDtoOutput.codcia = obj_L.codcia;
+                                                obj_EtiquetaDtoOutput.tmvma1 = obj_L.tmvma1;
+                                                obj_EtiquetaDtoOutput.tmvmag = obj_L.tmvmag;
+                                                obj_EtiquetaDtoOutput.ademag = obj_L.ademag;
+                                                obj_EtiquetaDtoOutput.codtex = obj_L.codtex;
+                                                obj_EtiquetaDtoOutput.codprv = obj_L.codprv;
+                                                obj_EtiquetaDtoOutput.trhmag = obj_L.trhmag;
+                                                obj_EtiquetaDtoOutput.urhmag = obj_L.urhmag;
+                                                obj_EtiquetaDtoOutput.fecmag = obj_L.fecmag.ToString("dd-MM-yyyy");
+                                                obj_EtiquetaDtoOutput.ltomag = obj_L.ltomag;
+                                                obj_EtiquetaDtoOutput.peso_unitario = obj_EtiquetaDtoOutput.cremang / obj_EtiquetaDtoOutput.caemag;
+                                                obj_EtiquetaDtoOutput.desexi = obj_L.desexi;
+                                                obj_EtiquetaDtoOutput.destipexi = obj_L.destipexi;
 
-
-                                            obj_EtiquetaDtoOutputs.Add(obj_EtiquetaDtoOutput);
+                                                obj_EtiquetaDtoOutputs.Add(obj_EtiquetaDtoOutput);
+                                            }
+                                            response = new
+                                            {
+                                                success = true,
+                                                message = "Datos de Etiqueta Obtenidos",
+                                                result = obj_EtiquetaDtoOutputs
+                                            };
                                         }
-
-
-                                        response = new
+                                        else
                                         {
-                                            success = true,
-                                            message = "Datos de Etiqueta Obtenidos",
-                                            result = obj_EtiquetaDtoOutputs
-                                        };
+                                            response = new
+                                            {
+                                                success = false,
+                                                message = "El registro está utilizado por: " + PcNameObtenido,
+                                                result = obj_EtiquetaDtoOutputs
 
+                                            };
+                                        }
                                     }
                                     else
                                     {
+                                        _GeneralRepository.DesbloquearRegistro2(obj.etiqueta);
                                         response = new
                                         {
                                             success = false,
-                                            message = "El registro está utilizado por: " + PcNameObtenido,
+                                            message = "Etiqueta pertenece a una existencia distinta a la orden ingresada.",
                                             result = obj_EtiquetaDtoOutputs
 
                                         };
                                     }
-
                                 }
                                 else
                                 {
-                               
                                     _GeneralRepository.DesbloquearRegistro2(obj.etiqueta);
                                     response = new
                                     {
@@ -657,18 +666,7 @@ namespace API_MOV_ALM.Controllers
 
                                 }
                             }
-
-
-
-
-
-
-
-
-
                         }
-
-
                         break;
                     case 9999:
 
@@ -691,27 +689,18 @@ namespace API_MOV_ALM.Controllers
                         };
                         break;
                 }
-
-
             }
 
             catch (Exception ex)
             {
-
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
             }
 
             return new JsonResult(response);
-
-
-
-
-
         }
 
         private int validarRegistroFMOVALG2(string etiqueta)
         {
-   
             List<Almacen> Lista_Almacen = new List<Almacen>();
             Lista_Almacen = _AlmacenRepository.ObtenerRegistro_FMOVALG2_2(etiqueta);
 

@@ -14,7 +14,8 @@
           "Models": "1.0.0",
           "Newtonsoft.Json": "13.0.3",
           "System.Data.OleDb": "8.0.0",
-          "System.IdentityModel.Tokens.Jwt": "7.2.0"
+          "System.IdentityModel.Tokens.Jwt": "7.2.0",
+          "Tools": "1.0.0"
         },
         "runtime": {
           "Services.dll": {}
@@ -197,6 +198,14 @@
             "fileVersion": "1.0.0.0"
           }
         }
+      },
+      "Tools/1.0.0": {
+        "runtime": {
+          "Tools.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -324,6 +333,11 @@
       "sha512": ""
     },
     "Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Tools/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

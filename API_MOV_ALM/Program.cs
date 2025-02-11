@@ -6,6 +6,8 @@ using Services.Repository.Implementacion;
 using Services.Repository.Interface;
 using ServiceStack.Text;
 using System.Text;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -56,6 +58,22 @@ builder.Services.AddCors(options =>
             .AllowAnyHeader()); // Permitir cualquier cabecera
 });
 
+
+builder.Services.AddApiVersioning(options =>
+{
+    options.ReportApiVersions = true;
+    options.AssumeDefaultVersionWhenUnspecified = true;
+    options.DefaultApiVersion = new ApiVersion(1, 0);
+
+    options.ApiVersionReader = ApiVersionReader.Combine(
+
+       new UrlSegmentApiVersionReader(),   // Permite versionado en la URL 
+
+       new HeaderApiVersionReader("X-API-Version")  // Permite versionado en el header 
+
+   );
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,6 +84,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
   
 }
+
 
 app.UseHttpsRedirection();
 app.UseCors("CorsPolicy");

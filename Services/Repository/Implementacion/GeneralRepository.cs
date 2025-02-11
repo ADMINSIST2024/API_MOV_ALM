@@ -14,6 +14,7 @@ using System.Configuration;
 using DTOs.DtosOuputs.DtosGeneralOutputs;
 using DTOs.DtosInputs.DtosGeneralInputs;
 using DTOs.DtosInputs.DtosAlta;
+using Tools;
 
 namespace Services.Repository.Implementacion
 {
@@ -775,6 +776,8 @@ namespace Services.Repository.Implementacion
                                     obj_BE.urhmag = lector[16].ToString().Trim();
                                     obj_BE.fecmag = Convert.ToDateTime(lector[17].ToString().Trim() ?? DateTime.MinValue.ToString());
                                     obj_BE.ltomag = lector[18].ToString().Trim();
+                                    obj_BE.destipexi = lector[19].ToString().Trim();
+                                    obj_BE.desexi = lector[20].ToString().Trim();
 
                                     ListaDatosEtiqueta.Add(obj_BE);
                                 }
@@ -1418,6 +1421,7 @@ namespace Services.Repository.Implementacion
                 StackTrace st = new StackTrace(ex, true);
                 string mensaje = ex.Message;
                 Console.WriteLine(mensaje);
+                Log.Write("ValidarLogin", ex.Message);
             }
 
             return obj_BE;
@@ -1457,15 +1461,15 @@ namespace Services.Repository.Implementacion
                                     obj_BE.descripcionProceso = lector[3].ToString().Trim();
                                     obj_BE.nroCargaMaxima = lector[4].ToString().Trim();
                                     obj_BE.estadoOrden = lector[5].ToString().Trim();
+                                    obj_BE.descripcionArticulo = lector[6].ToString().Trim();
+                                    obj_BE.list_CodExis = lector[7].ToString().Trim();
 
                                     ListaDatosGeneral.Add(obj_BE);
                                 }
-
                                 lector.Close();
                             }
                         }
                     }
-
                 }
 
 

@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\API\\API_MOV_ALM\\DTOs\\DTOs.csproj",
+      "projectUniqueName": "D:\\REPOSITORIO\\API_MOV_ALM\\DTOs\\DTOs.csproj",
       "projectName": "DTOs",
-      "projectPath": "D:\\API\\API_MOV_ALM\\DTOs\\DTOs.csproj",
+      "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\DTOs\\DTOs.csproj",
       "packagesPath": "C:\\Users\\SYSTEM8\\.nuget\\packages\\",
-      "outputPath": "D:\\API\\API_MOV_ALM\\DTOs\\obj\\",
+      "outputPath": "D:\\REPOSITORIO\\API_MOV_ALM\\DTOs\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

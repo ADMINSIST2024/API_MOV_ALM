@@ -14,5 +14,7 @@ namespace DTOs.DtosOuputs.DtosGeneralOutputs
         public string descripcionProceso { get; set; }
         public string nroCarga { get; set; }
         public string estadoOrden { get; set; }
+        public string descripcionArticulo { get; set; }
+        public string list_CodExis { get; set; }
     }
 }

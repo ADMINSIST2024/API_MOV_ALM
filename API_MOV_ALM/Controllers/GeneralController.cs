@@ -10,12 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services.Repository.Implementacion;
 using Services.Repository.Interface;
+using Tools;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace API_MOV_ALM.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    [ApiVersion("1.0")]
     [ApiController]
 
     public class GeneralController : ControllerBase
@@ -1020,13 +1022,14 @@ namespace API_MOV_ALM.Controllers
             General obj_general = new General();
             obj_general.nomUsu = obj.usuario;
             obj_general.pawUsu = Encripta(obj.clave);
+            Log.Write("API.ValidarLogin", obj_general.pawUsu);
             object response = null;
 
             General obj_General = new General();
             ValidarLoginDtoOutputs obj_ValidarLogin = new ValidarLoginDtoOutputs();
             try
             {
-                obj_General =  _GeneralRepository.ValidarLogin(obj_general);
+                obj_General = _GeneralRepository.ValidarLogin(obj_general);
 
                 if (obj_General == null || obj_General.nomUsu == "" || obj_General.nomUsu == null)
                 {
@@ -1068,7 +1071,7 @@ namespace API_MOV_ALM.Controllers
 
                     }
                     else {
-                       
+
 
                         response = new
                         {
@@ -1085,6 +1088,7 @@ namespace API_MOV_ALM.Controllers
             catch (Exception ex)
             {
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
+                Log.Write("Api.ValidarLogin", ex.Message);
             }
 
             return new JsonResult(response);
@@ -1098,7 +1102,6 @@ namespace API_MOV_ALM.Controllers
             General objcc = new General();
             objcc.nroOrden = obj.nroOrden;
 
-
             List<General> obj_Lista = new List<General>();
             List<NroOrdenDtoOutput> obj_NroOrdenDtoOutputs = new List<NroOrdenDtoOutput>();
 
@@ -1108,8 +1111,6 @@ namespace API_MOV_ALM.Controllers
 
                 if (obj_Lista.Count() > 0)
                 {
-
-
                     foreach (General obj_L in obj_Lista)
                     {
                         NroOrdenDtoOutput obj_NroOrden = new NroOrdenDtoOutput();
@@ -1119,11 +1120,11 @@ namespace API_MOV_ALM.Controllers
                         obj_NroOrden.descripcionProceso = obj_L.descripcionProceso;
                         obj_NroOrden.nroCarga =obj_L.nroCargaMaxima;
                         obj_NroOrden.estadoOrden = obj_L.estadoOrden;
-
+                        obj_NroOrden.descripcionArticulo = obj_L.descripcionArticulo;
+                        obj_NroOrden.list_CodExis = obj_L.list_CodExis;
 
                         obj_NroOrdenDtoOutputs.Add(obj_NroOrden);
                     }
-
 
                     response = new
                     {
@@ -1134,7 +1135,6 @@ namespace API_MOV_ALM.Controllers
                 }
                 else
                 {
-
                     response = new
                     {
                         success = false,
@@ -1144,7 +1144,6 @@ namespace API_MOV_ALM.Controllers
 
                 }
             }
-
             catch (Exception ex)
             {
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });

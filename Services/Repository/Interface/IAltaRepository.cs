@@ -12,6 +12,6 @@ namespace Services.Repository.Interface
 
         Task<(int rowsAffected, string mensaje)> InsertaODRPCON1(T obj);
 
-
+        Task<int> Prueba();
     }
 }

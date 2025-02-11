@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "S4pXaPOlH0E=",
+  "dgSpecHash": "4RBLYcRlSx8=",
   "success": true,
-  "projectFilePath": "D:\\API\\API_MOV_ALM\\API_MOV_ALM\\API_MOV_ALM.csproj",
+  "projectFilePath": "D:\\REPOSITORIO\\API_MOV_ALM\\API_MOV_ALM\\API_MOV_ALM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SYSTEM8\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.1\\microsoft.aspnetcore.authentication.jwtbearer.8.0.1.nupkg.sha512",
+    "C:\\Users\\SYSTEM8\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.1.0\\microsoft.aspnetcore.mvc.versioning.5.1.0.nupkg.sha512",
     "C:\\Users\\SYSTEM8\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\SYSTEM8\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\SYSTEM8\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\8.0.0\\microsoft.extensions.configuration.abstractions.8.0.0.nupkg.sha512",

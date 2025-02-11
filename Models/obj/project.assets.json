@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\API\\API_MOV_ALM\\Models\\Models.csproj",
+      "projectUniqueName": "D:\\REPOSITORIO\\API_MOV_ALM\\Models\\Models.csproj",
       "projectName": "Models",
-      "projectPath": "D:\\API\\API_MOV_ALM\\Models\\Models.csproj",
+      "projectPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Models\\Models.csproj",
       "packagesPath": "C:\\Users\\SYSTEM8\\.nuget\\packages\\",
-      "outputPath": "D:\\API\\API_MOV_ALM\\Models\\obj\\",
+      "outputPath": "D:\\REPOSITORIO\\API_MOV_ALM\\Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -65,5 +65,8 @@ namespace Models
 
         // ltomag CHAR (10)
         public string ltomag { get; set; }
+        public string desexi { get; set; }
+        public string destipexi { get; set; }
+        public int cscma1 { get; set; }
     }
 }

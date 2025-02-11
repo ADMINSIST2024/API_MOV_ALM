@@ -64,5 +64,8 @@ namespace DTOs.DtosOuputs.DtosEtiqueta
 
         // ltomag CHAR (10)
         public string ltomag { get; set; }
+        public decimal peso_unitario { get; set; }
+        public string desexi { get; set; }
+        public string destipexi { get; set; }
     }
 }

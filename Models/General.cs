@@ -60,10 +60,13 @@ namespace Models
         public string descripcionProceso { get; set; }
         public int nroCarga { get; set; }
         public string nroCargaMaxima { get; set; }
+        public string descripcionArticulo { get; set; }
+        public string list_CodExis { get; set; }
         public string estadoOrden { get; set; }
         public int estadoCarga { get; set; }
         public int consecutivo { get; set; }
         public string estadoConsecutivo { get; set; }
+        public int codExistencia { get; set; }
 
     }
 }
