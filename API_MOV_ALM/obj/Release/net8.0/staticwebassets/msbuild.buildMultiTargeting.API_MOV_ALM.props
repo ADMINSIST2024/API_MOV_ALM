@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\API_MOV_ALM.props" />
-</Project>
