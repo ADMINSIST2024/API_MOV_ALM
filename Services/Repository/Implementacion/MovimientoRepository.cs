@@ -71,6 +71,11 @@ namespace Services.Repository.Implementacion
                                     obj_BE.codtmv = lector[14].ToString().Trim();
                                     obj_BE.cencos = Convert.ToInt32(lector[15]);
 
+                                    obj_BE.almori = lector[16].ToString().Trim();
+                                    obj_BE.almdest = lector[17].ToString().Trim();
+                                    obj_BE.destmv = lector[18].ToString().Trim();
+                                    obj_BE.umemag = lector[19].ToString().Trim();
+
                                     ListaMovimientos.Add(obj_BE);
                                 }
 

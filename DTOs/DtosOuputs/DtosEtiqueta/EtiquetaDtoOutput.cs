@@ -67,5 +67,6 @@ namespace DTOs.DtosOuputs.DtosEtiqueta
         public decimal peso_unitario { get; set; }
         public string desexi { get; set; }
         public string destipexi { get; set; }
+        public string desmaq { get; set; }
     }
 }

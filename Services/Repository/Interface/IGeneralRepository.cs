@@ -1,4 +1,5 @@
 ﻿using DTOs.DtosInputs.DtosAlta;
+using DTOs.DtosInputs.DtosGeneralInputs;
 using DTOs.DtosOuputs.DtosGeneralOutputs;
 using Models;
 using System;
@@ -60,7 +61,7 @@ namespace Services.Repository.Interface
 
         List<General> ExisteConsecutivo(T obj);
 
-
+        UltimoMovimientoDtoOutput ObtenerUltimoMovimiento(UltimoMovimientoInputs obj);
 
     }
     

@@ -9,5 +9,6 @@ namespace DTOs.DtosInputs.DtosGeneralInputs
     public class NroOrdenDtoInputs
     {
         public int nroOrden { get; set; }
+        public int codAlmacen { get; set; }
     }
 }

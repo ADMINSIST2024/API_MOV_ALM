@@ -26,7 +26,11 @@ namespace Models
         public int cencos { get; set; }
 
         public string fecmag { get; set; }
-  
+        public string almori { get; set; }
+        public string almdest { get; set; }
+        public string destmv { get; set; }
+        public string umemag { get; set; }
+
 
     }
 }

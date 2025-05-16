@@ -97,9 +97,9 @@ namespace Services.Repository.Implementacion
                                 using (OleDbCommand cmd = new OleDbCommand("SP_API_ALTA", con))
                                 {
                                     cmd.CommandType = CommandType.StoredProcedure;
+                                    cmd.Transaction = transaction;
 
                                     // Agregar parámetros
-
                                     cmd.Parameters.AddWithValue("@codigo", obj.codigo);
                                     cmd.Parameters.AddWithValue("@codcia", obj.codcia);
                                     cmd.Parameters.AddWithValue("@codalg", obj.codalg);
@@ -109,7 +109,7 @@ namespace Services.Repository.Implementacion
                                     cmd.Parameters.AddWithValue("@secma2", obj.secma2);
                                     cmd.Parameters.AddWithValue("@codtmv", obj.codtmv);
                                     cmd.Parameters.AddWithValue("@cremag", obj.cremag);
-                                    cmd.Parameters.AddWithValue("@cencos", obj.cencos);
+                                    cmd.Parameters.AddWithValue("@cencos", obj.cencos); 
                                     cmd.Parameters.AddWithValue("@ademag", obj.ademag);
                                     cmd.Parameters.AddWithValue("@ucrmag", obj.ucrmag);
                                     cmd.Parameters.AddWithValue("@caemag", obj.caemag);

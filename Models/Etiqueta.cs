@@ -68,5 +68,6 @@ namespace Models
         public string desexi { get; set; }
         public string destipexi { get; set; }
         public int cscma1 { get; set; }
+        public string desmaq { get; set; }
     }
 }

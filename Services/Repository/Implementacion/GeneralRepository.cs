@@ -207,16 +207,12 @@ namespace Services.Repository.Implementacion
                             cmd.Parameters.AddWithValue("@CODALG", codalg);
                             cmd.Parameters.AddWithValue("@TMVCOR", tmvmag);
 
-
                             using (var lector =  cmd.ExecuteReader(CommandBehavior.CloseConnection))
                             {
                                 while ( lector.Read())
                                 {
-
                                     rowsAffected = Convert.ToInt32(lector[0].ToString().Trim() ?? "0");
-
                                 }
-
                                 lector.Close();
                             }
 
@@ -246,8 +242,7 @@ namespace Services.Repository.Implementacion
                 {
                     using (var con = new OleDbConnection(CadenaAS400))
                     {
-
-                         con.Open();
+                        con.Open();
 
                         using (OleDbCommand cmd = new OleDbCommand("SP_API_BLOQUEAR_REGISTRO_CORRELATIVO_NULL", con))
                         {
@@ -778,6 +773,7 @@ namespace Services.Repository.Implementacion
                                     obj_BE.ltomag = lector[18].ToString().Trim();
                                     obj_BE.destipexi = lector[19].ToString().Trim();
                                     obj_BE.desexi = lector[20].ToString().Trim();
+                                    obj_BE.desmaq = lector[22].ToString().Trim();
 
                                     ListaDatosEtiqueta.Add(obj_BE);
                                 }
@@ -1421,7 +1417,7 @@ namespace Services.Repository.Implementacion
                 StackTrace st = new StackTrace(ex, true);
                 string mensaje = ex.Message;
                 Console.WriteLine(mensaje);
-                Log.Write("ValidarLogin", ex.Message);
+                Log.Write(2, ex.Message);
             }
 
             return obj_BE;
@@ -1621,6 +1617,52 @@ namespace Services.Repository.Implementacion
                 string codigoError = Convert.ToString(frame.GetHashCode());
             }
             return ListaDatosGeneral;
+        }
+
+        public UltimoMovimientoDtoOutput ObtenerUltimoMovimiento(UltimoMovimientoInputs ultimoMovimientoInputs)
+        {
+            UltimoMovimientoDtoOutput ultimoMovimiento = null;
+
+            try
+            {
+                if (string.IsNullOrEmpty(CadenaAS400))
+                {
+                    Console.WriteLine("La cadena de conexión es nula o vacía");
+                }
+                else
+                {
+                    using (var con = new OleDbConnection(CadenaAS400))
+                    {
+                        con.OpenAsync();  // Usa OpenAsync en lugar de Open
+
+                        using (OleDbCommand cmd = new OleDbCommand("SP_API_ULTIMO_MOVIMIENTO_ORDEN", con))
+                        {
+                            cmd.Parameters.AddWithValue("@ORDEN", ultimoMovimientoInputs.nroOrden);
+                            cmd.Parameters.AddWithValue("@CSC", ultimoMovimientoInputs.nroCsc);
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            using (var lector = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                            {
+                                if (lector.Read())
+                                {
+                                    ultimoMovimiento = new UltimoMovimientoDtoOutput
+                                    {
+                                        CodExistencia = Convert.ToInt32(lector[0]),
+                                        DesExistencia = lector[0].ToString().Trim()
+                                    };
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                StackTrace st = new StackTrace(ex, true);
+                ultimoMovimiento = null;
+                Console.WriteLine(ex.Message);
+            }
+
+            return ultimoMovimiento;
         }
     }
 }

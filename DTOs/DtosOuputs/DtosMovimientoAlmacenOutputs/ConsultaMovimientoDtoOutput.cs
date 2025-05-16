@@ -24,6 +24,10 @@ namespace DTOs.DtosOuputs.DtosMovimientoAlmacenOutputs
         public string codigo { get; set; }
         public string codtmv { get; set; }
         public int cencos { get; set; }
+        public string almori { get; set; }
+        public string almdest { get; set; }
+        public string destmv { get; set; }
+        public string umemag { get; set; }
 
     }
 }
