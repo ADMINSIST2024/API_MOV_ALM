@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Services.Repository.Interface;
+using Swashbuckle.AspNetCore.Annotations;
 using System.Net.Sockets;
 
 namespace API_MOV_ALM.Controllers
@@ -31,6 +32,8 @@ namespace API_MOV_ALM.Controllers
 
         [HttpGet]
         [Route("ObtenerCompania")]
+        [SwaggerOperation(Summary = "Obtiene lista de compañias",
+                  Description = "Obtiene json de compañias.")]
         //[Authorize]
         public async Task<IActionResult> ObtenerCompania()
         {

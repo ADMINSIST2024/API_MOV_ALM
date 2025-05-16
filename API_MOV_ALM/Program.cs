@@ -1,4 +1,4 @@
-using API_MOV_ALM.Models;
+Ôªøusing API_MOV_ALM.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Models;
@@ -8,6 +8,8 @@ using ServiceStack.Text;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,25 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+{
+    var provider = builder.Services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+    options.EnableAnnotations(); // ‚Üê Habilitar anotaciones de Swashbuckle
+
+
+    foreach (var description in provider.ApiVersionDescriptions)
+    {
+        options.SwaggerDoc(description.GroupName, new OpenApiInfo
+        {
+            Title = $"Mi API {description.ApiVersion}",
+            Version = description.ApiVersion.ToString()
+        });
+    }
+});
+
+
 builder.Services.AddScoped<IUsuarioRepository<Usuario>, UsuarioRepository>();
-builder.Services.AddScoped<ICompaÒiaRepository<CompaÒia>, CompaÒiaRepository>();
+builder.Services.AddScoped<ICompa√±iaRepository<Compa√±ia>, Compa√±iaRepository>();
 builder.Services.AddScoped<IAlmacenRepository<Almacen>, AlmacenRepository>();
 builder.Services.AddScoped<ITipoDocumentoRepository<TipoDocumento>, TipoDocumentoRepository>();
 builder.Services.AddScoped<ITipoMovimientoRepository<TipoMovimiento>, TipoMovimientoRepository>();
@@ -54,7 +72,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy",
         builder => builder
             .AllowAnyOrigin() // Permitir cualquier origen
-            .AllowAnyMethod() // Permitir cualquier mÈtodo (GET, POST, etc.)
+            .AllowAnyMethod() // Permitir cualquier m√©todo (GET, POST, etc.)
             .AllowAnyHeader()); // Permitir cualquier cabecera
 });
 
@@ -64,14 +82,14 @@ builder.Services.AddApiVersioning(options =>
     options.ReportApiVersions = true;
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
+    options.ApiVersionReader = new UrlSegmentApiVersionReader(); // Versiones en URL
+});
 
-    options.ApiVersionReader = ApiVersionReader.Combine(
-
-       new UrlSegmentApiVersionReader(),   // Permite versionado en la URL 
-
-       new HeaderApiVersionReader("X-API-Version")  // Permite versionado en el header 
-
-   );
+// Permitir versiones en Swagger
+builder.Services.AddVersionedApiExplorer(options =>
+{
+    options.GroupNameFormat = "'v'VVV"; // Formato v1, v2
+    options.SubstituteApiVersionInUrl = true; // Sustituye {version} en rutas
 });
 
 var app = builder.Build();
@@ -79,10 +97,15 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage();
     app.UseSwagger();
-    app.UseSwaggerUI();
-  
+    app.UseSwaggerUI(options =>
+    {
+        var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+        foreach (var description in provider.ApiVersionDescriptions)
+        {
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", $"API {description.ApiVersion}");
+        }
+    });
 }
 
 

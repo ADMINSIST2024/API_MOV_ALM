@@ -71,6 +71,10 @@ namespace API_MOV_ALM.Controllers
                         obj_ConsultaMovimiento.codigo = obj_L.codigo;
                         obj_ConsultaMovimiento.codtmv = obj_L.codtmv;
                         obj_ConsultaMovimiento.cencos = obj_L.cencos;
+                        obj_ConsultaMovimiento.almori = obj_L.almori;
+                        obj_ConsultaMovimiento.almdest = obj_L.almdest;
+                        obj_ConsultaMovimiento.destmv = obj_L.destmv;
+                        obj_ConsultaMovimiento.umemag = obj_L.umemag;
 
 
                         obj_ConsultaMovimientoDtoOutputs.Add(obj_ConsultaMovimiento);

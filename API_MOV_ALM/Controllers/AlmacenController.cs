@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services.Repository.Implementacion;
 using Services.Repository.Interface;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace API_MOV_ALM.Controllers
 {
@@ -244,6 +245,8 @@ namespace API_MOV_ALM.Controllers
 
         [HttpPost]
         [Route("UtilizaRegistroCorrelativoAlmacen")]
+        [SwaggerOperation(Summary = "Obtiene ultimo correlativo",
+                  Description = "Devuelve el ultimo correlativo de la tabla FABCORRE segun codigo de compañia, almacen y tipo de movimiento.")]
         //[Authorize]
         public async Task<IActionResult> UtilizaRegistroCorrelativoAlmacen(UtilizaRegCorrelativoAlmDtoInputs almacen)
         {

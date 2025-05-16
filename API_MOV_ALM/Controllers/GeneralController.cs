@@ -16,8 +16,9 @@ using Tools;
 
 namespace API_MOV_ALM.Controllers
 {
-    [Route("api/v{version:apiVersion}/[controller]")]
-    [ApiVersion("1.0")]
+    //[Route("api/v{version:apiVersion}/[controller]")]
+    //[ApiVersion("1.0")]
+    [Route("api/[controller]")]
     [ApiController]
 
     public class GeneralController : ControllerBase
@@ -28,7 +29,6 @@ namespace API_MOV_ALM.Controllers
 
         public GeneralController(IConfiguration configuration, IGeneralRepository<General> GeneralRepository, IUsuarioRepository<Usuario> UsuarioRepository)
         {
-
             _GeneralRepository = GeneralRepository;
             _configuration = configuration;
             _UsuarioRepository = UsuarioRepository;
@@ -1022,7 +1022,6 @@ namespace API_MOV_ALM.Controllers
             General obj_general = new General();
             obj_general.nomUsu = obj.usuario;
             obj_general.pawUsu = Encripta(obj.clave);
-            Log.Write("API.ValidarLogin", obj_general.pawUsu);
             object response = null;
 
             General obj_General = new General();
@@ -1068,11 +1067,8 @@ namespace API_MOV_ALM.Controllers
                             result = obj_ValidarLogin
 
                         };
-
                     }
                     else {
-
-
                         response = new
                         {
                             success = true,
@@ -1081,14 +1077,12 @@ namespace API_MOV_ALM.Controllers
 
                         };
                     }
-
                 }
             }
-
             catch (Exception ex)
             {
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
-                Log.Write("Api.ValidarLogin", ex.Message);
+                Log.Write(2, ex.Message);
             }
 
             return new JsonResult(response);
@@ -1111,6 +1105,7 @@ namespace API_MOV_ALM.Controllers
 
                 if (obj_Lista.Count() > 0)
                 {
+
                     foreach (General obj_L in obj_Lista)
                     {
                         NroOrdenDtoOutput obj_NroOrden = new NroOrdenDtoOutput();
@@ -1118,7 +1113,7 @@ namespace API_MOV_ALM.Controllers
                         obj_NroOrden.anio = obj_L.anio;
                         obj_NroOrden.codigoProceso = obj_L.codigoProceso;
                         obj_NroOrden.descripcionProceso = obj_L.descripcionProceso;
-                        obj_NroOrden.nroCarga =obj_L.nroCargaMaxima;
+                        obj_NroOrden.nroCarga = obj_L.nroCargaMaxima;
                         obj_NroOrden.estadoOrden = obj_L.estadoOrden;
                         obj_NroOrden.descripcionArticulo = obj_L.descripcionArticulo;
                         obj_NroOrden.list_CodExis = obj_L.list_CodExis;
@@ -1126,12 +1121,73 @@ namespace API_MOV_ALM.Controllers
                         obj_NroOrdenDtoOutputs.Add(obj_NroOrden);
                     }
 
-                    response = new
+                    if (obj.codAlmacen == 81) //tejeduria
                     {
-                        success = true,
-                        message = "Datos encontrados",
-                        result = obj_NroOrdenDtoOutputs
-                    };
+                        switch (Convert.ToInt32(obj_Lista[0].estadoOrden))
+                        {
+                            case 0:
+                                response = new
+                                {
+                                    success = false,
+                                    message = "Orden pendiente en Pre Tejeduria.",
+                                    result = default(string),
+                                };
+                                break;
+
+                            case 1:
+                            case 2:
+                                response = new
+                                {
+                                    success = true,
+                                    message = "Datos encontrados.",
+                                    result = obj_NroOrdenDtoOutputs
+                                };
+                                break;
+
+                            case (9):
+                                response = new
+                                {
+                                    success = false,
+                                    message = "Orden se encuentra anulada.",
+                                    result = default(string)
+                                };
+                                break;
+
+                        }
+                    }
+                    else if (obj.codAlmacen == 80) // Tejeduria
+                    {
+                        switch (Convert.ToInt32(obj_Lista[0].estadoOrden))
+                        {
+                            case 0:
+                            case 1:
+                                response = new
+                                {
+                                    success = true,
+                                    message = "Datos encontrados.",
+                                    result = obj_NroOrdenDtoOutputs
+                                };
+                                break;
+                            case 2:
+                                response = new
+                                {
+                                    success = false,
+                                    message = "No se puede realizar el movimiento ,ya que el Nº Orden esta cerrado.",
+                                    result = default(string)
+                                };
+                                break;
+
+                            case 9:
+                                response = new
+                                {
+                                    success = false,
+                                    message = "Orden se encuentra anulada.",
+                                    result = default(string)
+                                };
+                                break;
+
+                        }
+                    }
                 }
                 else
                 {
@@ -1263,13 +1319,7 @@ namespace API_MOV_ALM.Controllers
                             result = "S"
                         };
                     }
-
-
-
-
-
                 }
-               
             }
 
             catch (Exception ex)
@@ -1280,14 +1330,49 @@ namespace API_MOV_ALM.Controllers
             return new JsonResult(response);
         }
 
+        [HttpPost]
+        [Route("obtenerUltimoMovimiento")]
+        public async Task<IActionResult> obtenerUltimoMovimiento(UltimoMovimientoInputs ultimoMovimientoInputs)
+        {
+            object response = null;
 
+            UltimoMovimientoDtoOutput objcc = new UltimoMovimientoDtoOutput();
 
+            try
+            {
+                objcc = _GeneralRepository.ObtenerUltimoMovimiento(ultimoMovimientoInputs);
 
+                if (objcc != null)
+                {
+                    response = new
+                    {
+                        success = true,
+                        message = "Ultimo movimiento",
+                        result = objcc
+                    };
+                }
+                else
+                {
+                    response = new
+                    {
+                        success = true,
+                        message = "No se encontraron datos",
+                        result = ""
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                response = new
+                {
+                    success = false,
+                    message = "No se pudo obtener los resultados: " + ex.Message.ToString(),
+                    result = ""
+                };
+            }
 
-
-
-
-
+            return new JsonResult(response);
+        }
 
 
         private string Encripta(string clave)

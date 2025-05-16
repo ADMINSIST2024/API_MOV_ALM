@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Services.Repository.Implementacion;
 using Services.Repository.Interface;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace API_MOV_ALM.Controllers
 {
@@ -29,6 +30,8 @@ namespace API_MOV_ALM.Controllers
 
         [HttpGet]
         [Route("ObtenerCentroCostos")]
+        [SwaggerOperation(Summary = "Obtiene Centro de costo",
+                  Description = "Obtiene json de centro de costo.")]
         public async Task<IActionResult> ObtenerCentroCostos()
         {
             List<CentroCosto> obj_centroCostos = new List<CentroCosto>();
