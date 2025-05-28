@@ -651,8 +651,6 @@ namespace Services.Repository.Implementacion
         public async Task<List<Etiqueta>> ObtenerDatosEtiqueta(Etiqueta obj)
         {
 
-            string jsonResultados = "";
-
 
             List<Etiqueta> ListaDatosEtiqueta = new List<Etiqueta>();
 
@@ -731,7 +729,6 @@ namespace Services.Repository.Implementacion
 
         public List<Etiqueta> ObtenerDatosEtiqueta2(string etiqueta)
         {
-            string jsonResultados = "";
 
 
             List<Etiqueta> ListaDatosEtiqueta = new List<Etiqueta>();
@@ -814,7 +811,6 @@ namespace Services.Repository.Implementacion
         public  List<ObtenerDatosStockEmpaqueDtoOutput> ObtenerDatosStockEmpaque(string ObtenerTodasEtiquetas)
         {
 
-            string jsonResultados = "";
 
 
             List<ObtenerDatosStockEmpaqueDtoOutput> ListaObtenerDatosStockEmpaque = new List<ObtenerDatosStockEmpaqueDtoOutput>();
@@ -1062,8 +1058,6 @@ namespace Services.Repository.Implementacion
         public async Task<List<General>> ObtenerFMOVALG2(General obj)
         {
 
-            string jsonResultados = "";
-
 
             List<General> ListaDatosGeneral = new List<General>();
 
@@ -1278,8 +1272,6 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<General>> ValidaUsoCorrelativo()
         {
-            string jsonResultados = "";
-
 
             List<General> ListaDatosGeneral = new List<General>();
 
@@ -1373,9 +1365,7 @@ namespace Services.Repository.Implementacion
 
         General IGeneralRepository<General>.ValidarLogin(General obj)
         {
-            string jsonResultados = "";
-
-
+       
 
             General obj_BE = new General();
             try
@@ -1429,8 +1419,7 @@ namespace Services.Repository.Implementacion
 
         public List<General> ObtenerDatosOrden(General obj)
         {
-            string jsonResultados = "";
-
+ 
 
             List<General> ListaDatosGeneral = new List<General>();
 
@@ -1496,7 +1485,6 @@ namespace Services.Repository.Implementacion
 
         public List<General> ObtenerEstadoCarga(General obj)
         {
-            string jsonResultados = "";
 
 
             List<General> ListaDatosGeneral = new List<General>();
@@ -1560,8 +1548,6 @@ namespace Services.Repository.Implementacion
 
         public List<General> ExisteConsecutivo(General obj)
         {
-            string jsonResultados = "";
-
 
             List<General> ListaDatosGeneral = new List<General>();
 

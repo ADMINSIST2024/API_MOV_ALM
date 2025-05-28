@@ -186,7 +186,7 @@
       "DTOs/1.0.0": {
         "runtime": {
           "DTOs.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -194,7 +194,7 @@
       "Models/1.0.0": {
         "runtime": {
           "Models.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -202,7 +202,7 @@
       "Tools/1.0.0": {
         "runtime": {
           "Tools.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }

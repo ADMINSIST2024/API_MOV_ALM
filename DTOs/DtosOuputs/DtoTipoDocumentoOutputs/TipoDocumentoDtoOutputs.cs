@@ -12,8 +12,8 @@ namespace DTOs.DtosOuputs.DtoTipoMovimientoOutputs
     public class TipoDocumentoDtoOutputs
     {
     
-        public string codTipDoc { get; set; }
+        public string? codTipDoc { get; set; }
         
-        public string desTipDoc { get; set; }
+        public string? desTipDoc { get; set; }
     }
 }

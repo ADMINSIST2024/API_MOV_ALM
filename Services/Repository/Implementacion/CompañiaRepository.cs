@@ -19,8 +19,7 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<Compañia>> ObtenerCompañia()
         {
-            string jsonResultados = "";
-
+    
 
             List<Compañia> ListaCompañia = new List<Compañia>();
 

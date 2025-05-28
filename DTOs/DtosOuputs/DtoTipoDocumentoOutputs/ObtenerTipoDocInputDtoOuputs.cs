@@ -8,7 +8,7 @@ namespace DTOs.DtosOuputs.DtoTipoDocumentoOutputs
 {
     public class ObtenerTipoDocInputDtoOuputs
     {
-        public string codigoTipDoc {get;set;}
+        public string? codigoTipDoc {get;set;}
     }
 }
 

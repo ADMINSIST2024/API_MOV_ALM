@@ -8,6 +8,6 @@ namespace DTOs.DtosInputs.DtosGeneralInputs
 {
     public class ObtenerDatosStockEmpaqueDtoInputs
     {
-        public string codigoEtiquetas { get; set; }
+        public string? codigoEtiquetas { get; set; }
     }
 }

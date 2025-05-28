@@ -24,7 +24,7 @@ namespace Services.Repository.Implementacion
 
         public List<Movimientos> ConsultaMovimientos(Movimientos obj)
         {
-            string jsonResultados = "";
+
             DateTime fecmagDate = DateTime.ParseExact(obj.fecmag, "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
             List<Movimientos> ListaMovimientos = new List<Movimientos>();

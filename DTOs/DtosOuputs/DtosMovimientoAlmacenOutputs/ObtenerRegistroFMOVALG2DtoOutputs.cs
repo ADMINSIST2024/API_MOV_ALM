@@ -10,7 +10,7 @@ namespace DTOs.DtosOuputs.DtosMovimientoAlmacenOutputs
     {
         public int codcia { get; set; }
         public int codalg { get; set; }
-        public string tmvmag { get; set; }
+        public string? tmvmag { get; set; }
       
     }
 }

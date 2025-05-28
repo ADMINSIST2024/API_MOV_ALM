@@ -8,7 +8,7 @@ namespace Models
 {
     public class TipoMovimiento
     {
-        public string codTipMov { get; set; }
-        public string desTipMov { get; set; }
+        public string? codTipMov { get; set; }
+        public string? desTipMov { get; set; }
     }
 }

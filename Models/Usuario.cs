@@ -13,7 +13,7 @@
         public int STAUSU { get; set; }
         public int USUREG { get; set; }
         public int USUAPR { get; set; }
-        public string fechaSistema { get; set; }
+        public string? fechaSistema { get; set; }
 
     }
 

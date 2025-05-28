@@ -10,7 +10,7 @@ namespace DTOs.DtosInputs.DtosGeneralInputs
     {
         public int codCia { get; set; }
         public int codAlg { get; set; }
-        public string tmvcor { get; set; }
+        public string? tmvcor { get; set; }
         public string? pcName { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace DTOs.DtosOuputs.DtosAlmacen
     {
         public int codAlg { get; set; }
 
-        public string codCos { get; set; }
+        public string? codCos { get; set; }
     }
 }
