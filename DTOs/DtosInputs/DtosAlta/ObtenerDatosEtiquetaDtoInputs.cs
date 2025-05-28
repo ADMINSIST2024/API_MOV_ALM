@@ -8,16 +8,16 @@ namespace DTOs.DtosInputs.DtosAlta
 {
     public class ObtenerDatosEtiquetaDtoInputs
     {
-        public string CodigoEtiqueta { get; set; }
-        public string codigoArticulo { get; set; }
-        public string color { get; set; }
-        public string lote { get; set; }
-        public string um { get; set; }
-        public string codigoExistencia { get; set; }
-        public string umreal { get; set; }
-        public string cod_prov { get; set; }
-        public string secuencia { get; set; }
-        public int stock_cantidad { get; set; }
+        public string? CodigoEtiqueta { get; set; }
+        public string? codigoArticulo { get; set; }
+        public string? color { get; set; }
+        public string? lote { get; set; }
+        public string? um { get; set; }
+        public string? codigoExistencia { get; set; }
+        public string? umreal { get; set; }
+        public string? cod_prov { get; set; }
+        public string? secuencia { get; set; }
+        public int   stock_cantidad { get; set; }
         public double stock_peso { get; set; }
         public int salida_cantidad { get; set; }
         public decimal salida_peso { get; set; }

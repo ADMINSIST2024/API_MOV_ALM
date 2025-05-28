@@ -252,7 +252,7 @@ namespace API_MOV_ALM.Controllers
 
             catch (Exception ex)
             {
-                Tools.Log.Write(2,
+                Tools.Log.Write(Convert.ToString(2),
                     "Etiqueta: " + obj.etiqueta + "\n" +
                     "Mensaje de Error: " + ex.Message.ToString() + "\n" +
                     "Input: " + JsonSerializer.Serialize(obj).ToString());

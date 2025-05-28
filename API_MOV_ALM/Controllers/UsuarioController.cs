@@ -41,7 +41,7 @@ namespace API_MOV_ALM.Controllers
         [Route("login")]
         public async Task<IActionResult> IniciarSesion(LoginDtoInputs user)
         {
-            object response; string token = ""; 
+            object response;
             Usuario obj_usuario = new Usuario();
             obj_usuario.NOMUSU = user.NOMUSU;
             obj_usuario.PAWUSU = user.PAWUSU;

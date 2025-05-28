@@ -8,7 +8,7 @@ namespace DTOs.DtosInputs.DtosGeneralInputs
 {
     public class ConsecutivoDtoInputs
     {
-        public string tipoMovimiento { get; set; }
+        public string? tipoMovimiento { get; set; }
         public int consecutivo { get; set; }
         public int nroOrden { get; set; }
     }

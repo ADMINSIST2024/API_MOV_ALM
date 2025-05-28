@@ -162,7 +162,7 @@ namespace API_MOV_ALM.Controllers
         [Route("ProcesarGuardado")]
         public async Task<IActionResult> ProcesarGuardado(ProcesarGuardadoDtoInputs obj)
         {
-            Tools.Log.WriteInit(2, "Inicio del End Point: ProcesarGuardado");
+            Tools.Log.Write(Convert.ToString(2), "Inicio del End Point: ProcesarGuardado");
             object response = null;
             int resGuardarAlta=0;
             
@@ -175,19 +175,19 @@ namespace API_MOV_ALM.Controllers
             List<Almacen> ListaAlmacen = new List<Almacen>();
             try
             {
-                Tools.Log.Write(2, "Inicio funcion: ProcesarFecha(" + obj.fecmag + ")");
+                Tools.Log.Write(Convert.ToString(2), "Inicio funcion: ProcesarFecha(" + obj.fecmag + ")");
                 bool resultadoProcesarFecha=  ProcesarFecha(obj.fecmag);
-                Tools.Log.Write(2, "Resultado resultadoProcesarFecha = " + resultadoProcesarFecha.ToString());
+                Tools.Log.Write(Convert.ToString(2), "Resultado resultadoProcesarFecha = " + resultadoProcesarFecha.ToString());
 
                 if (resultadoProcesarFecha)
                 {
-                    Tools.Log.Write(2, "Validacion StockEmpaque (" + JsonSerializer.Serialize(obj) + ")");
+                    Tools.Log.Write(Convert.ToString(2), "Validacion StockEmpaque (" + JsonSerializer.Serialize(obj) + ")");
                     int resultadoValidarStockEmpaque = ValidarStockEmpaque(obj);
-                    Tools.Log.Write(2, "Resultado: resultadoValidarStockEmpaque = " + resultadoValidarStockEmpaque.ToString());
+                    Tools.Log.Write(Convert.ToString(2), "Resultado: resultadoValidarStockEmpaque = " + resultadoValidarStockEmpaque.ToString());
 
                     if (resultadoValidarStockEmpaque > 0)
                     {
-                        Tools.Log.Write(2, "Stock mayor a 0, respuesta: Hay " + resultadoValidarStockEmpaque + " etiqueta que no se puede registrar por falta de stock.");
+                        Tools.Log.Write(Convert.ToString(2), "Stock mayor a 0, respuesta: Hay " + resultadoValidarStockEmpaque + " etiqueta que no se puede registrar por falta de stock.");
                         response = new
                         {
                             success = false,
@@ -197,31 +197,31 @@ namespace API_MOV_ALM.Controllers
                     }
                     else
                     {
-                        Tools.Log.Write(2, "Funcion BloquearRegistroCorrelativoNull ");
+                        Tools.Log.Write(Convert.ToString(2), "Funcion BloquearRegistroCorrelativoNull ");
                         //BLOQUEA EL CORRELATIVO PARA NO SER USADO POR OTRO EQUIPO
                         int respuestaBloquearRegistroCorrelativoNull = _GeneralRepository.BloquearRegistroCorrelativoNull(obj.tmvmag, obj.pcName, obj.codalg, obj.codcompania);
-                        Tools.Log.Write(2, "respuestaBloquearRegistroCorrelativoNull = " + respuestaBloquearRegistroCorrelativoNull.ToString());
+                        Tools.Log.Write(Convert.ToString(2), "respuestaBloquearRegistroCorrelativoNull = " + respuestaBloquearRegistroCorrelativoNull.ToString());
 
-                        Tools.Log.Write(2, "Funcion ObtenerCorrelativoAlmacen ");
+                        Tools.Log.Write(Convert.ToString(2), "Funcion ObtenerCorrelativoAlmacen ");
                         ListaObtenerCorrelativoAlmacen = _AlmacenRepository.ObtenerCorrelativoAlmacen(obj.tmvmag, obj.pcName, obj.codalg, obj.codcompania);
-                        Tools.Log.Write(2, "respuestaBloquearRegistroCorrelativoNull = " + JsonSerializer.Serialize(respuestaBloquearRegistroCorrelativoNull));
+                        Tools.Log.Write(Convert.ToString(2), "respuestaBloquearRegistroCorrelativoNull = " + JsonSerializer.Serialize(respuestaBloquearRegistroCorrelativoNull));
 
                         int nota = ListaObtenerCorrelativoAlmacen[0].nota;
-                        Tools.Log.Write(2, "Nota = " + ListaObtenerCorrelativoAlmacen[0].nota);
+                        Tools.Log.Write(Convert.ToString(2), "Nota = " + ListaObtenerCorrelativoAlmacen[0].nota);
 
                         if (nota > 0)
                         {
-                            Tools.Log.Write(2, "si la nota es mayor a 0");
-                            Tools.Log.Write(2, "Funcion UtilizaRegistroCorrelativoAlmacen2");
+                            Tools.Log.Write(Convert.ToString(2), "si la nota es mayor a 0");
+                            Tools.Log.Write(Convert.ToString(2), "Funcion UtilizaRegistroCorrelativoAlmacen2");
                             ListaUtilizaRegistro = _AlmacenRepository.UtilizaRegistroCorrelativoAlmacen2(obj.tmvmag, obj.codalg, obj.codcompania);
-                            Tools.Log.Write(2, "ListaUtilizaRegistro = " + JsonSerializer.Serialize(ListaUtilizaRegistro));
+                            Tools.Log.Write(Convert.ToString(2), "ListaUtilizaRegistro = " + JsonSerializer.Serialize(ListaUtilizaRegistro));
 
                             string PcNameUsando = ListaUtilizaRegistro[0].pcName;
-                            Tools.Log.Write(2, "PcNameUsando = " + ListaUtilizaRegistro[0].pcName);
+                            Tools.Log.Write(Convert.ToString(2), "PcNameUsando = " + ListaUtilizaRegistro[0].pcName);
 
                             if (!PcNameUsando.Equals(obj.pcName))
                             {
-                                Tools.Log.Write(2, "El equipo " + PcNameUsando + " esta utilizando el correlativo.");
+                                Tools.Log.Write(Convert.ToString(2), "El equipo " + PcNameUsando + " esta utilizando el correlativo.");
                                 response = new
                                 {
                                     success = false,
@@ -231,15 +231,15 @@ namespace API_MOV_ALM.Controllers
                             }
                             else
                             {
-                                Tools.Log.Write(2, "Funcion BloquearRegistroCorrelativo2");
+                                Tools.Log.Write(Convert.ToString(2), "Funcion BloquearRegistroCorrelativo2");
                                 int respuestaBloquearRegistroCorrelativo = _GeneralRepository.BloquearRegistroCorrelativo2(obj.tmvmag, obj.pcName, obj.codalg, obj.codcompania);
-                                Tools.Log.Write(2, "respuestaBloquearRegistroCorrelativo = " + respuestaBloquearRegistroCorrelativo.ToString());
+                                Tools.Log.Write(Convert.ToString(2), "respuestaBloquearRegistroCorrelativo = " + respuestaBloquearRegistroCorrelativo.ToString());
 
-                                Tools.Log.Write(2, "Grabado de etiquetas");
+                                Tools.Log.Write(Convert.ToString(2), "Grabado de etiquetas");
                                 foreach (var item in obj.TotalEtiquetas)
                                 {
-                                    Tools.Log.Write(2, "Etiqueta: " + item.CodigoEtiqueta);
-                                    Tools.Log.Write(2, "JSON : " + JsonSerializer.Serialize(item));
+                                    Tools.Log.Write(Convert.ToString(2), "Etiqueta: " + item.CodigoEtiqueta);
+                                    Tools.Log.Write(Convert.ToString(2), "JSON : " + JsonSerializer.Serialize(item));
 
                                     string codigoEtiqueta = item.CodigoEtiqueta;
                                     string codigoArticulo = item.codigoArticulo;
@@ -253,14 +253,14 @@ namespace API_MOV_ALM.Controllers
                                     obj_almacen.CodAlg = obj.codalg;
                                     obj_general.codtex = Convert.ToInt32(Convert.ToDouble(codtex));
 
-                                    Tools.Log.Write(2, "Funcion ValidarAlamcenXCcosto \n JSON Almacen: " + JsonSerializer.Serialize(obj_almacen));
+                                    Tools.Log.Write(Convert.ToString(2), "Funcion ValidarAlamcenXCcosto \n JSON Almacen: " + JsonSerializer.Serialize(obj_almacen));
                                     ListaAlmacen = await _AlmacenRepository.ValidarAlamcenXCcosto(obj_almacen);
 
                                     int codAlmacen = ListaAlmacen[0].CodAlg;
                                     string Codcos = ListaAlmacen[0].CodCos;
                                     if (obj.codalg == codAlmacen && !obj.cencos.Equals(Codcos))
                                     {
-                                        Tools.Log.Write(2, "El centro de costo no corresponde al almacen");
+                                        Tools.Log.Write(Convert.ToString(2), "El centro de costo no corresponde al almacen");
                                         response = new
                                         {
                                             success = false,
@@ -270,18 +270,18 @@ namespace API_MOV_ALM.Controllers
                                     }
                                     else
                                     {
-                                        Tools.Log.Write(2, "Funcion CriterioTipoExistencia(\n" + JsonSerializer.Serialize(obj_general) + ")");
+                                        Tools.Log.Write(Convert.ToString(2), "Funcion CriterioTipoExistencia(\n" + JsonSerializer.Serialize(obj_general) + ")");
                                         int resCriterioTipoExistencia = await _GeneralRepository.CriterioTipoExistencia(obj_general);
                                         if (resCriterioTipoExistencia > 0)
                                         {
-                                            Tools.Log.Write(2, "Si resCriterioTipoExistencia > 0");
+                                            Tools.Log.Write(Convert.ToString(2), "Si resCriterioTipoExistencia > 0");
                                             //  ValidaUsoCorrelativo(altaViewModel, codtex, codigoEtiqueta, codcia, codalg, tmvmag, nmvmag, cscmag, secma2, codtmv, cremag, cencos, ademag, ucrmag,
                                             //         caemag, refere, ctdor1, anoor1, nroor1, cscor2, fecmag, pcName, ncrma2);
                                         }
                                         else
                                         {
-                                            Tools.Log.Write(2, "Si resCriterioTipoExistencia <= 0");
-                                            Tools.Log.Write(2, "Asignacion de parametos para enviar a EndPoint");
+                                            Tools.Log.Write(Convert.ToString(2), "Si resCriterioTipoExistencia <= 0");
+                                            Tools.Log.Write(Convert.ToString(2), "Asignacion de parametos para enviar a EndPoint");
 
                                             obj_alta.codigo = codigoEtiqueta;
                                             obj_alta.codcia = obj.codcompania;
@@ -306,25 +306,25 @@ namespace API_MOV_ALM.Controllers
                                             obj_alta.pcname = obj.pcName;
                                             obj_alta.ncrma2 =string.IsNullOrEmpty(obj.ncrma2) ? 0 : Convert.ToInt32(obj.ncrma2);
 
-                                            Tools.Log.Write(2, "obj_alta = \n " + JsonSerializer.Serialize(obj_alta));
-                                            Tools.Log.Write(2, "Ejecucion de metodo de Alta");
+                                            Tools.Log.Write(Convert.ToString(2), "obj_alta = \n " + JsonSerializer.Serialize(obj_alta));
+                                            Tools.Log.Write(Convert.ToString(2), "Ejecucion de metodo de Alta");
                                             resGuardarAlta = await _AltaRepository.Alta(obj_alta);
-                                            Tools.Log.Write(2, "ResultadoresGuardarAlta resGuardarAlta = " + resGuardarAlta.ToString());
+                                            Tools.Log.Write(Convert.ToString(2), "ResultadoresGuardarAlta resGuardarAlta = " + resGuardarAlta.ToString());
 
-                                            Tools.Log.Write(2, "Ejecucion de metodo de DesbloquearRegistro2");
+                                            Tools.Log.Write(Convert.ToString(2), "Ejecucion de metodo de DesbloquearRegistro2");
                                             int resDesbloquear = _GeneralRepository.DesbloquearRegistro2(codigoEtiqueta);
-                                            Tools.Log.Write(2, "Resultadores DesbloquearRegistro2 resDesbloquear = " + resDesbloquear.ToString());
+                                            Tools.Log.Write(Convert.ToString(2), "Resultadores DesbloquearRegistro2 resDesbloquear = " + resDesbloquear.ToString());
                                         }
                                     }
                                 }
 
-                                Tools.Log.Write(2, "Ejecucion de metodo de DesbloquearFABCORRE2");
+                                Tools.Log.Write(Convert.ToString(2), "Ejecucion de metodo de DesbloquearFABCORRE2");
                                 int resDesbloquearFABCORRE2=  _GeneralRepository.DesbloquearFABCORRE2(obj.codcompania, obj.codalg, obj.tmvmag);
-                                Tools.Log.Write(2, "resDesbloquearFABCORRE2 = " + resDesbloquearFABCORRE2.ToString());
+                                Tools.Log.Write(Convert.ToString(2), "resDesbloquearFABCORRE2 = " + resDesbloquearFABCORRE2.ToString());
 
                                 if (resGuardarAlta == -1)
                                 {
-                                    Tools.Log.Write(2, "Registro grabado satisfactoriamente, Movimiento Nº "+ nota);
+                                    Tools.Log.Write(Convert.ToString(2), "Registro grabado satisfactoriamente, Movimiento Nº "+ nota);
 
                                     response = new
                                     {
@@ -335,7 +335,7 @@ namespace API_MOV_ALM.Controllers
                                 }
                                 else
                                 {
-                                    Tools.Log.Write(2, "Registro no grabado");
+                                    Tools.Log.Write(Convert.ToString(2), "Registro no grabado");
                                     response = new
                                     {
                                         success = false,
@@ -349,7 +349,7 @@ namespace API_MOV_ALM.Controllers
                 }
                 else
                 {
-                    Tools.Log.Write(2, "Fecha inválida");
+                    Tools.Log.Write(Convert.ToString(2), "Fecha inválida");
                     response = new
                     {
                         success = false,
@@ -360,12 +360,12 @@ namespace API_MOV_ALM.Controllers
             }
             catch (Exception ex)
             {
-                Tools.Log.Write(2, "Error: " + ex.Message.ToString());
+                Tools.Log.Write(Convert.ToString(2), "Error: " + ex.Message.ToString());
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
             }
 
-            Tools.Log.Write(2, "Fin del End Point");
-            Tools.Log.Write(1, "Fin del End Point");
+            Tools.Log.Write(Convert.ToString(2), "Fin del End Point");
+            Tools.Log.Write(Convert.ToString(1), "Fin del End Point");
             return new JsonResult(response);
         }
 
@@ -469,10 +469,10 @@ namespace API_MOV_ALM.Controllers
         public async Task<IActionResult> ProcesoLecturaEtiqueta(ProcesoLecturaEtiquetaDtoInputs obj)
         {
             //log
-            Tools.Log.WriteInit(1, "Inicio api ProcesoLecturaEtiqueta");
-            Tools.Log.WriteInit(2, "Inicio api ProcesoLecturaEtiqueta");
-            Tools.Log.Write(1, "Etiqueta: " + obj.etiqueta);
-            Tools.Log.Write(2, "Etiqueta: " + obj.etiqueta);
+            Tools.Log.Write(Convert.ToString(1), "Inicio api ProcesoLecturaEtiqueta");
+            Tools.Log.Write(Convert.ToString(2), "Inicio api ProcesoLecturaEtiqueta");
+            Tools.Log.Write(Convert.ToString(1), "Etiqueta: " + obj.etiqueta);
+            Tools.Log.Write(Convert.ToString(2), "Etiqueta: " + obj.etiqueta);
 
             object response = null;
             List<EtiquetaDtoOutput> obj_EtiquetaDtoOutputs = new List<EtiquetaDtoOutput>();
@@ -480,33 +480,33 @@ namespace API_MOV_ALM.Controllers
             try
             {
                 //BLOQUEA FMOVALG1
-                Tools.Log.Write(1, "Inicio de funcion BloquearRegistro");
-                Tools.Log.Write(2, "Inicio de la funcion BloquearRegistro");
+                Tools.Log.Write(Convert.ToString(1), "Inicio de funcion BloquearRegistro");
+                Tools.Log.Write(Convert.ToString(2), "Inicio de la funcion BloquearRegistro");
 
                 int resultadoBloquearRegistro = BloquearRegistro(obj.etiqueta, obj.pcName);
 
-                Tools.Log.Write(2, "resultadoBloquearRegistro = " + resultadoBloquearRegistro);
-                Tools.Log.Write(2, "Fin de la funcion BloquearRegistro");
-                Tools.Log.Write(2, "switch");
+                Tools.Log.Write(Convert.ToString(2), "resultadoBloquearRegistro = " + resultadoBloquearRegistro);
+                Tools.Log.Write(Convert.ToString(2), "Fin de la funcion BloquearRegistro");
+                Tools.Log.Write(Convert.ToString(2), "switch");
 
                 switch (resultadoBloquearRegistro)
                 {
                     case 1:
                     case 8888:
-                        Tools.Log.Write(1, "Case 1 o 8888");
-                        Tools.Log.Write(2, "case 8888: ");
+                        Tools.Log.Write(Convert.ToString(1), "Case 1 o 8888");
+                        Tools.Log.Write(Convert.ToString(2), "case 8888: ");
 
-                        Tools.Log.Write(1, "Validacion de movimientos");
-                        Tools.Log.Write(2, "Inicio funcion validarRegistroFMOVALG2");
+                        Tools.Log.Write(Convert.ToString(1), "Validacion de movimientos");
+                        Tools.Log.Write(Convert.ToString(2), "Inicio funcion validarRegistroFMOVALG2");
 
                         int resultvalidarRegistroFMOVALG2= validarRegistroFMOVALG2(obj.etiqueta);
 
-                        Tools.Log.Write(2, "resultvalidarRegistroFMOVALG2 = " + resultvalidarRegistroFMOVALG2.ToString());
+                        Tools.Log.Write(Convert.ToString(2), "resultvalidarRegistroFMOVALG2 = " + resultvalidarRegistroFMOVALG2.ToString());
 
                         if (resultvalidarRegistroFMOVALG2 == 0)
                         {
-                            Tools.Log.Write(1, "Etiqueta no tiene movimientos");
-                            Tools.Log.Write(2, "si resultvalidarRegistroFMOVALG2 es 0");
+                            Tools.Log.Write(Convert.ToString(1), "Etiqueta no tiene movimientos");
+                            Tools.Log.Write(Convert.ToString(2), "si resultvalidarRegistroFMOVALG2 es 0");
                             response = new
                             {
                                 success = false,
@@ -516,19 +516,19 @@ namespace API_MOV_ALM.Controllers
                         }
                         else
                         {
-                            Tools.Log.Write(2, "si resultvalidarRegistroFMOVALG2 es distinto a 0");
+                            Tools.Log.Write(Convert.ToString(2), "si resultvalidarRegistroFMOVALG2 es distinto a 0");
                             List<Etiqueta> obj_ListaEtiqueta=new List<Etiqueta>();
 
-                            Tools.Log.Write(1, "Inicio de funcion ObtenerDatosEtiqueta2");
-                            Tools.Log.Write(2, "Funcion ObtenerDatosEtiqueta2");
+                            Tools.Log.Write(Convert.ToString(1), "Inicio de funcion ObtenerDatosEtiqueta2");
+                            Tools.Log.Write(Convert.ToString(2), "Funcion ObtenerDatosEtiqueta2");
 
                             obj_ListaEtiqueta = _GeneralRepository.ObtenerDatosEtiqueta2(obj.etiqueta);
-                            Tools.Log.Write(2, "resultado de la ObtenerDatosEtiqueta2, obj_ListaEtiqueta = " + JsonSerializer.Serialize(obj_ListaEtiqueta));
+                            Tools.Log.Write(Convert.ToString(2), "resultado de la ObtenerDatosEtiqueta2, obj_ListaEtiqueta = " + JsonSerializer.Serialize(obj_ListaEtiqueta));
 
                             if (obj_ListaEtiqueta.Count == 0)
                             {
-                                Tools.Log.Write(1, "Etiqueta no existe");
-                                Tools.Log.Write(2, "Etiqueta no existe");
+                                Tools.Log.Write(Convert.ToString(1), "Etiqueta no existe");
+                                Tools.Log.Write(Convert.ToString(2), "Etiqueta no existe");
                                 response = new
                                 {
                                     success = false,
@@ -539,10 +539,10 @@ namespace API_MOV_ALM.Controllers
                             }
                             else
                             {
-                                Tools.Log.Write(1, "Etiqueta si existe");
-                                Tools.Log.Write(2, "Etiqueta si existe");
+                                Tools.Log.Write(Convert.ToString(1), "Etiqueta si existe");
+                                Tools.Log.Write(Convert.ToString(2), "Etiqueta si existe");
 
-                                Tools.Log.Write(2, "Validacion: \n" +
+                                Tools.Log.Write(Convert.ToString(2), "Validacion: \n" +
                                     obj_ListaEtiqueta[0].codcia.ToString() + " = " + obj.codcompania.ToString() + "\n" +
                                     obj_ListaEtiqueta[0].tmvma1.ToString() + " = I \n" +
                                     obj_ListaEtiqueta[0].tmvmag.ToString() + " = I \n" +
@@ -556,20 +556,20 @@ namespace API_MOV_ALM.Controllers
                                 && (int)obj_ListaEtiqueta[0].codalg == Convert.ToInt32(obj.almacen)
                                 )
                                 {
-                                    Tools.Log.Write(2, "Validacion de existencia");
+                                    Tools.Log.Write(Convert.ToString(2), "Validacion de existencia");
                                     if (obj.listCodExis.Contains(obj_ListaEtiqueta[0].codexi.ToString()) || Convert.ToInt32(obj.almacen) == 81) 
                                     {
-                                        Tools.Log.Write(2, "Paso validacion de existencia");
-                                        Tools.Log.Write(2, "funcion UtilizaRegistro2");
+                                        Tools.Log.Write(Convert.ToString(2), "Paso validacion de existencia");
+                                        Tools.Log.Write(Convert.ToString(2), "funcion UtilizaRegistro2");
                                         string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
                                         if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
                                         {
-                                            Tools.Log.Write(2, "Validacion correcta de UtilizaRegistro2");
-                                            Tools.Log.Write(2, "Etiquetas: ");
+                                            Tools.Log.Write(Convert.ToString(2), "Validacion correcta de UtilizaRegistro2");
+                                            Tools.Log.Write(Convert.ToString(2), "Etiquetas: ");
 
                                             foreach (Etiqueta obj_L in obj_ListaEtiqueta)
                                             {
-                                                Tools.Log.Write(2,  obj_L.codigo);
+                                                Tools.Log.Write(Convert.ToString(2),  obj_L.codigo);
                                                 EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
                                                 obj_EtiquetaDtoOutput.codexi = obj_L.codexi;
                                                 obj_EtiquetaDtoOutput.codchi = obj_L.codchi;
@@ -633,15 +633,15 @@ namespace API_MOV_ALM.Controllers
                                 && (int)obj_ListaEtiqueta[0].ademag == Convert.ToInt32(obj.almacen)
                                 )
                             {
-                                Tools.Log.Write(2, "Paso segunda validacion");
+                                Tools.Log.Write(Convert.ToString(2), "Paso segunda validacion");
                                 if (obj.listCodExis.Contains(obj_ListaEtiqueta[0].codexi.ToString()) || Convert.ToInt32(obj.almacen) == 81)
                                 {
-                                    Tools.Log.Write(2, "funcion UtilizaRegistro2");
+                                    Tools.Log.Write(Convert.ToString(2), "funcion UtilizaRegistro2");
                                     string PcNameObtenido = _GeneralRepository.UtilizaRegistro2(obj.etiqueta);
                                     if (PcNameObtenido == null || PcNameObtenido.IsEmpty() || PcNameObtenido == obj.pcName)
                                     {
-                                        Tools.Log.Write(2, "Validacion correcta de UtilizaRegistro2");
-                                        Tools.Log.Write(2, "Etiquetas: ");
+                                        Tools.Log.Write(Convert.ToString(2), "Validacion correcta de UtilizaRegistro2");
+                                        Tools.Log.Write(Convert.ToString(2), "Etiquetas: ");
                                         foreach (Etiqueta obj_L in obj_ListaEtiqueta)
                                         {
                                             EtiquetaDtoOutput obj_EtiquetaDtoOutput = new EtiquetaDtoOutput();
@@ -680,7 +680,7 @@ namespace API_MOV_ALM.Controllers
                                     }
                                     else
                                     {
-                                        Tools.Log.Write(2, "El registro está utilizado por: " + PcNameObtenido);
+                                        Tools.Log.Write(Convert.ToString(2), "El registro está utilizado por: " + PcNameObtenido);
                                         response = new
                                         {
                                             success = false,
@@ -704,8 +704,8 @@ namespace API_MOV_ALM.Controllers
                             }
                             else
                             {
-                                Tools.Log.Write(2, "Etiqueta no pertenece");
-                                Tools.Log.Write(2, "ejecucion de funcion DesbloquearRegistro2");
+                                Tools.Log.Write(Convert.ToString(2), "Etiqueta no pertenece");
+                                Tools.Log.Write(Convert.ToString(2), "ejecucion de funcion DesbloquearRegistro2");
 
                                 _GeneralRepository.DesbloquearRegistro2(obj.etiqueta);
                                 response = new
@@ -720,8 +720,8 @@ namespace API_MOV_ALM.Controllers
                     }
                     break;
                 case 9999:
-                    Tools.Log.Write(1, "Case 9999 No existe el registro");
-                    Tools.Log.Write(2, "Case 9999 No existe el registro");
+                    Tools.Log.Write(Convert.ToString(1), "Case 9999 No existe el registro");
+                    Tools.Log.Write(Convert.ToString(2), "Case 9999 No existe el registro");
                     response = new
                     {
                         success = false,
@@ -731,8 +731,8 @@ namespace API_MOV_ALM.Controllers
                     };
                     break;
                 case 0:
-                    Tools.Log.Write(1, "Case 0 Etiqueta no pertenece");
-                    Tools.Log.Write(2, "Case 0 Etiqueta no pertenece");
+                    Tools.Log.Write(Convert.ToString(1), "Case 0 Etiqueta no pertenece");
+                    Tools.Log.Write(Convert.ToString(2), "Case 0 Etiqueta no pertenece");
                     response = new
                     {
                         success = false,
@@ -745,8 +745,8 @@ namespace API_MOV_ALM.Controllers
         }
         catch (Exception ex)
         {
-            Tools.Log.Write(1, "Error no se pudo obtener los datos de la etiqueta");
-            Tools.Log.Write(2, "Error ex = " + ex.Message);
+            Tools.Log.Write(Convert.ToString(1), "Error no se pudo obtener los datos de la etiqueta");
+            Tools.Log.Write(Convert.ToString(2), "Error ex = " + ex.Message);
             return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
         }
 

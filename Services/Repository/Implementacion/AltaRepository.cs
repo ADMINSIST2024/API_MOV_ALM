@@ -130,8 +130,8 @@ namespace Services.Repository.Implementacion
                             }
                             catch (Exception ex)
                             {
-                                transaction.Rollback(); // Revertir cambios en caso de error
-                                Console.WriteLine("Error en la transacción");// + ex.Message);
+                                transaction.Rollback();
+                                Console.WriteLine("Error en la transacción: " + ex.Message);
                             }
                         }
                     }

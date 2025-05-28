@@ -9,7 +9,7 @@ namespace DTOs.DtosOuputs.DtosGeneralOutputs
     public class ValidaUsoCorrelativoDtoOutput
     {
 
-        public string pcName { get; set; }
-        public string nCorre { get; set; }
+        public string? pcName { get; set; }
+        public string? nCorre { get; set; }
     }
 }

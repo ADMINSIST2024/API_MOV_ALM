@@ -23,7 +23,7 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<CentroCosto>> ObtenerCentroCostos()
         {
-            string jsonResultados = "";
+           
 
 
             List<CentroCosto> ListaCentroCosto = new List<CentroCosto>();
@@ -87,9 +87,7 @@ namespace Services.Repository.Implementacion
         public async Task<List<CentroCosto>> ObtenerCentroCostosXAlmacen(CentroCosto clase)
         {
 
-            string jsonResultados = "";
-
-
+        
             List<CentroCosto> ListaCentroCosto = new List<CentroCosto>();
 
             try

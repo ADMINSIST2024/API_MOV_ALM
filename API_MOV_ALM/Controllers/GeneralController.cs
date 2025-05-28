@@ -276,7 +276,7 @@ namespace API_MOV_ALM.Controllers
         [Route("UtilizaRegistro")]
         public async Task<IActionResult> UtilizaRegistro(UtilizaRegistroDtoInputs obj)
         {
-            object response; string token = "";
+            object response;
 
             General obj_General = new General();
             obj_General.codigoEtiqueta = obj.codigoEtiqueta;
@@ -807,7 +807,7 @@ namespace API_MOV_ALM.Controllers
         [Route("ValidaUsoCorrelativo")]
         public async Task<IActionResult> ValidaUsoCorrelativo()
         {
-            object response = null;
+     
 
 
             List<General> obj_Lista = new List<General>();
@@ -1082,7 +1082,7 @@ namespace API_MOV_ALM.Controllers
             catch (Exception ex)
             {
                 return new JsonResult(new { success = false, message = "Error Catch: " + ex.Message, StackTrace = ex.StackTrace, result = "" });
-                Log.Write(2, ex.Message);
+                Log.Write(Convert.ToString(2), ex.Message);
             }
 
             return new JsonResult(response);

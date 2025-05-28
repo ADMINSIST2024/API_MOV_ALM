@@ -23,7 +23,7 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerAlmacen()
         {
-            string jsonResultados = "";
+         
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -87,7 +87,6 @@ namespace Services.Repository.Implementacion
         public async Task<List<Almacen>> ObtenerAlmacenXCodigo(Almacen obj_Almacen)
         {
 
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -224,7 +223,7 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerCorrelativoAlmacen2(Almacen obj_Almacen)
         {
-            string jsonResultados = "";
+         
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -291,7 +290,7 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerRegistro_FMOVALG2(Almacen obj_Almacen)
         {
-            string jsonResultados = "";
+         
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -356,7 +355,7 @@ namespace Services.Repository.Implementacion
 
         public List<Almacen> ObtenerRegistro_FMOVALG2_2(string etiqueta)
         {
-            string jsonResultados = "";
+     
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();

@@ -8,6 +8,6 @@ namespace DTOs.DtosOuputs.DtosAlmacen
 {
     public class UtilizaRegCorrelativoAlmDtoOutputs
     {
-        public string pcName { get; set; }
+        public string? pcName { get; set; }
     }
 }

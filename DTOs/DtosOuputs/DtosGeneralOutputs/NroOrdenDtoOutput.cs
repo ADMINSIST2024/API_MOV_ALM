@@ -8,13 +8,13 @@ namespace DTOs.DtosOuputs.DtosGeneralOutputs
 {
     public class NroOrdenDtoOutput
     {
-        public string anio { get; set; }
-        public string tipoMovimiento { get; set; }
-        public string codigoProceso { get; set; }
-        public string descripcionProceso { get; set; }
-        public string nroCarga { get; set; }
-        public string estadoOrden { get; set; }
-        public string descripcionArticulo { get; set; }
-        public string list_CodExis { get; set; }
+        public string? anio { get; set; }
+        public string? tipoMovimiento { get; set; }
+        public string? codigoProceso { get; set; }
+        public string? descripcionProceso { get; set; }
+        public string? nroCarga { get; set; }
+        public string? estadoOrden { get; set; }
+        public string? descripcionArticulo { get; set; }
+        public string? list_CodExis { get; set; }
     }
 }

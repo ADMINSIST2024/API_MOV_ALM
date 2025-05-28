@@ -12,6 +12,6 @@ namespace DTOs.DtosInputs.DtosGeneralInputs
 
         public int codalg { get; set; }
 
-        public string tmvcor { get; set; }
+        public string? tmvcor { get; set; }
     }
 }

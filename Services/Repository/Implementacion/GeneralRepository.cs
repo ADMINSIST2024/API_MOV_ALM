@@ -726,7 +726,6 @@ namespace Services.Repository.Implementacion
 
         public List<Etiqueta> ObtenerDatosEtiqueta2(string etiqueta)
         {
-            string jsonResultados = "";
 
 
             List<Etiqueta> ListaDatosEtiqueta = new List<Etiqueta>();
@@ -1058,7 +1057,7 @@ namespace Services.Repository.Implementacion
         public async Task<List<General>> ObtenerFMOVALG2(General obj)
         {
 
-            string jsonResultados = "";
+          
 
 
             List<General> ListaDatosGeneral = new List<General>();
@@ -1417,7 +1416,7 @@ namespace Services.Repository.Implementacion
                 StackTrace st = new StackTrace(ex, true);
                 string mensaje = ex.Message;
                 Console.WriteLine(mensaje);
-                Log.Write(2, ex.Message);
+                Log.Write(Convert.ToString(2), ex.Message);
             }
 
             return obj_BE;
@@ -1425,7 +1424,7 @@ namespace Services.Repository.Implementacion
 
         public List<General> ObtenerDatosOrden(General obj)
         {
-            string jsonResultados = "";
+     
 
 
             List<General> ListaDatosGeneral = new List<General>();
