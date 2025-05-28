@@ -23,8 +23,6 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerAlmacen()
         {
-            string jsonResultados = "";
-
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
 
@@ -86,8 +84,6 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<Almacen>> ObtenerAlmacenXCodigo(Almacen obj_Almacen)
         {
-
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -157,7 +153,6 @@ namespace Services.Repository.Implementacion
 
         public  List<ObtenerCorrelativoAlmacenDtoOuputs> ObtenerCorrelativoAlmacen(string tmvmag, string pcName, int codalg, int codcompania)
         {
-            string jsonResultados = "";
 
 
             List<ObtenerCorrelativoAlmacenDtoOuputs> ListaAlmacen = new List<ObtenerCorrelativoAlmacenDtoOuputs>();
@@ -224,7 +219,6 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerCorrelativoAlmacen2(Almacen obj_Almacen)
         {
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -291,7 +285,6 @@ namespace Services.Repository.Implementacion
         }
         public async Task<List<Almacen>> ObtenerRegistro_FMOVALG2(Almacen obj_Almacen)
         {
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -356,8 +349,6 @@ namespace Services.Repository.Implementacion
 
         public List<Almacen> ObtenerRegistro_FMOVALG2_2(string etiqueta)
         {
-            string jsonResultados = "";
-
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
 
@@ -421,7 +412,6 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<Almacen>> UtilizaRegistroCorrelativoAlmacen(Almacen obj_Almacen)
         {
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();
@@ -487,7 +477,6 @@ namespace Services.Repository.Implementacion
 
         public List<UtilizaRegistroDtoOutputs> UtilizaRegistroCorrelativoAlmacen2(string tmvmag, int codalg, int codcompania)
         {
-            string jsonResultados = "";
 
 
             List<UtilizaRegistroDtoOutputs> ListaUtilizaRegistro = new List<UtilizaRegistroDtoOutputs>();
@@ -554,8 +543,6 @@ namespace Services.Repository.Implementacion
 
         public async Task<List<Almacen>> ValidarAlamcenXCcosto(Almacen obj_Almacen)
         {
-
-            string jsonResultados = "";
 
 
             List<Almacen> ListaAlmacen = new List<Almacen>();

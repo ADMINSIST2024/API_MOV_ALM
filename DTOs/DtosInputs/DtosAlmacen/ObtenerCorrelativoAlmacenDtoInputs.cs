@@ -10,6 +10,6 @@ namespace DTOs.DtosInputs.DtosAlmacen
     {
         public int codigoCia { get; set; }
         public int codigoAlmacen { get; set; }
-        public string tipoMovimiento { get; set; }
+        public string? tipoMovimiento { get; set; }
     }
 }

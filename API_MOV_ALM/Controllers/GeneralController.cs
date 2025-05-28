@@ -276,7 +276,7 @@ namespace API_MOV_ALM.Controllers
         [Route("UtilizaRegistro")]
         public async Task<IActionResult> UtilizaRegistro(UtilizaRegistroDtoInputs obj)
         {
-            object response; string token = "";
+            object response; 
 
             General obj_General = new General();
             obj_General.codigoEtiqueta = obj.codigoEtiqueta;
